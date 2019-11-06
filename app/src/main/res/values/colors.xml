@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1CA9B2</color> <!--Cor mais escura do app -->
+    <color name="colorPrimaryDark">#0D858D</color> <!-- Cor principal do app -->
+    <color name="textColorPrimary">#E9E9E9</color> <!--Cor do texto -->
+    <color name="windowBackground">#A4A4A4</color> <!--Cor do plano de fundo -->
+    <color name="navigationBarColor">#9197A3</color> <!--Cor da barra de navegação do rodapé -->
+    <color name="editColor">#434346</color>
+    <color name="colorAccent">#0D858D</color>
+</resources>

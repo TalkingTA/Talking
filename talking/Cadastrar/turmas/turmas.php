@@ -99,16 +99,16 @@
       $primeiro = true;
       for($i=0;$i<count($dados);$i++){ ?>
     <?php if($primeiro){ ?>
-    <form method="POST" action="../../php/metodos/metodosTurmas.php">
+    <form  method="POST" action="../../php/metodos/metodosTurmas.php">
       <div class="container">
        
         <table class="table table-borderless">
           <thead>
             <tr>
-              <th class="col-sm-2">Série</th>
-              <th class="col-sm-2">Descrição</th>
-              <th class="col-sm-2">Período</th>
-              <th class="col-sm-2">Ações</th>
+              <th id="thAlinhada" class="col-sm-2">Série</th>
+              <th id="thAlinhada" class="col-sm-2">Descrição</th>
+              <th id="thAlinhada" class="col-sm-2">Período</th>
+              <th id="thAlinhada" class="col-sm-2">Ações</th>
             </tr>
           </thead>
           <tbody>

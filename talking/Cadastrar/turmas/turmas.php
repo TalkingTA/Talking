@@ -95,9 +95,13 @@
     <br>
 
     <!-- COMEÇO DO CRUD -->
-    <?php for($i=0;$i<count($dados);$i++){ ?>
+    <?php 
+      $primeiro = true;
+      for($i=0;$i<count($dados);$i++){ ?>
+    <?php if($primeiro){ ?>
     <form method="POST" action="../../php/metodos/metodosTurmas.php">
       <div class="container">
+       
         <table class="table table-borderless">
           <thead>
             <tr>
@@ -108,20 +112,18 @@
             </tr>
           </thead>
           <tbody>
+            <?php $primeiro = false; } ?>
             <input type="hidden" name="turma_id" value="<?= $dados[$i]['turma_id'] ?>">
             <tr>   
               <td><?php echo $dados[$i]['turma_serie']?></td>  
               <td><?php echo $dados[$i]['turma_descricao']?></td>  
               <td><?php echo $dados[$i]['turma_periodo']?></td> 
 
-              <td>   
+              <td nowrap>   
                 <button type="button" name="visualizar" class="btn btn-primary" data-toggle="modal" data-target="#ModalVisualizar<?php echo $dados[$i]['turma_id']; ?>">   Visualizar
                 </button>
-              </td>
-              <td>   
+               
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ModalAlterar<?php echo $dados[$i]['turma_id']; ?>">Alterar</button>
-              </td>
-              <td>
                 <button type="button" name="excluir" class="btn btn-danger" data-toggle="modal" data-target="#ModalExcluir<?php echo $dados[$i]['turma_id']; ?>">Excluir</button>
               </td>
             </tr>
@@ -162,9 +164,12 @@
                   </div>
                   <!-- MODAL CORPO -->
                   <div class="modal-body">
-                    <p>Série:     <input type="text" name="serie"     value="<?= $dados[$i]['turma_serie']  ?>"></p>
-                    <p>Descrição: <input type="text" name="descricao" value="<?= $dados[$i]['turma_descricao']  ?>"></p> 
-                    <p>Período:   <input type="text" name="periodo"   value="<?= $dados[$i]['turma_periodo']  ?>"></p> 
+                    <label class="label-input100">Série:</label>
+                    <input type="text" class="input100" name="serie" value="<?= $dados[$i]['turma_serie']  ?>">
+                    <label class="label-input100">Descrição:</label>
+                    <input type="text" class="input100" name="descricao" value="<?= $dados[$i]['turma_descricao']  ?>"> 
+                    <label class="label-input100">Período:</label>
+                    <input type="text" class="input100" name="periodo" value="<?= $dados[$i]['turma_periodo']  ?>"> 
                     
                   
                   </div>
@@ -200,11 +205,14 @@
                 </div>
               </div>
             </div>
+            <?php }
+            if(!$primeiro) { ?>  
           </tbody>
         </table>
       </div>
     </form>
-    <?php } ?>  
+    <?php } ?>
+    
 
     <!-- FUNÇÃO PARA LIMPAR OS CAMPOS -->
     <script>
@@ -240,8 +248,8 @@
               <span class="label-input100">Período</span>
               <select name="turma_periodo" class="form-control" placeholder="Escolha um período" required>
               <option value="">---</option>
-              <option value="manha">Manha</a>  
-              <option value="tarde">Tarde</a>
+              <option value="Manha">Manha</a>  
+              <option value="Tarde">Tarde</a>
               </select>
         
                 

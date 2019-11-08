@@ -1,4 +1,4 @@
-
+ 
 Create table pessoa (
 	pessoa_id Int NOT NULL AUTO_INCREMENT,
 	pessoa_nome Varchar(50) NOT NULL,

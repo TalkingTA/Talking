@@ -41,6 +41,8 @@ $obj->setTabela("tipo_pessoa");
 
 		if($obj->cadastrarPessoa($_POST) == 'ok'){
 
+			$obj->enviarCadastro($_POST);
+
 			header('location:../../Inicio/login/index.php');
 			
 		}

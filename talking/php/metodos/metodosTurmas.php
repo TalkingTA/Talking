@@ -20,10 +20,7 @@ $obj->setTabela("turma");
 		}
 		else{
 
-			echo '<script type="text/javascript">
-			alert("Turma não cadastrada!!");
-			window.location="../../Cadastrar/turmas/turmas.php";
-			</script>';
+			
 
 		}
 

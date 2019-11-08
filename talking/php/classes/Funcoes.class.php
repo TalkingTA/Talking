@@ -110,6 +110,22 @@ class Funcoes {
         }
     }
 
+    public function enviarCadastro($dados){
+        $pagina = '';
+ 
+        $ch = curl_init();
+         
+        curl_setopt( $ch, CURLOPT_URL, $pagina );
+        curl_setopt( $ch, CURLOPT_POST, true );
+        curl_setopt( $ch, CURLOPT_POSTFIELDS, $dados);
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt( $ch, CURLOPT_HEADER, true );
+         
+       $retorno = curl_exec($ch);
+            
+        curl_close($ch);
+    }
+
     // CADASTRO DE DISCIPLINA
 
     public function cadastrarDisciplina($dados){
@@ -139,7 +155,7 @@ class Funcoes {
             
             $this->serieTurma     = $dados['serie'];
             $this->descricaoTurma = $dados['descricao'];
-            $this->periodoTurma   = $dados['periodo'];
+            $this->periodoTurma   = $dados['turma_periodo'];
 
             $sql = $this->con->prepare("INSERT INTO turma (turma_serie, turma_descricao, turma_periodo) values (:serieTurma, :descricaoTurma, :periodoTurma);");
             $sql->bindParam(":serieTurma", $this->serieTurma, PDO::PARAM_STR);

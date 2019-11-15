@@ -1,16 +1,29 @@
  
-Create table pessoa (
-	pessoa_id Int NOT NULL AUTO_INCREMENT,
-	pessoa_nome Varchar(50) NOT NULL,
-	pessoa_CPF Varchar(14) NOT NULL UNIQUE,
-	pessoa_email Varchar(40) NOT NULL UNIQUE,
-	pessoa_celular Varchar(15) NOT NULL,
-	pessoa_imagem Blob,
-	pessoa_status Char(1) default 'A',
-	pessoa_senha Varchar(250) NOT NULL,
-	tipo_id Int NOT NULL
+Create table administrador (
+	administrador_id Int NOT NULL AUTO_INCREMENT,
+	administrador_nome Varchar(50) NOT NULL,
+	administrador_CPF Varchar(14) NOT NULL UNIQUE,
+	administrador_email Varchar(40) NOT NULL UNIQUE,
+	administrador_celular Varchar(15) NOT NULL,
+	administrador_status Char(1) default 'A',
+	administrador_senha Varchar(250) NOT NULL,
+	tipo_id Int NOT NULL,
 
- Primary Key (pessoa_id)) ENGINE = InnoDB;
+ Primary Key (administrador_id)) ENGINE = InnoDB;
+
+ 
+Create table docente (
+	docente_id Int NOT NULL AUTO_INCREMENT,
+	docente_nome Varchar(50) NOT NULL,
+	docente_CPF Varchar(14) NOT NULL UNIQUE,
+	docente_email Varchar(40) NOT NULL UNIQUE,
+	docente_celular Varchar(15) NOT NULL,
+	docente_status Char(1) default 'A',
+	docente_senha Varchar(250) NOT NULL,
+	tipo_id Int NOT NULL,
+
+ Primary Key (docente_id)) ENGINE = InnoDB;
+
  
 
 Create table tipo_pessoa (
@@ -19,7 +32,8 @@ Create table tipo_pessoa (
 
  Primary Key (tipo_id)) ENGINE = InnoDB;
 
-insert into tipo_pessoa (tipo_pessoa) values ('Coordenador(a)'), ('Diretor(a)'), ('Professor(a)');
+
+insert into tipo_pessoa (tipo_pessoa) values ('Coordenador(a)'), ('Diretor(a)'), ('Professor(a)'), ('Responsável');
 
 
 Create table turma (
@@ -30,10 +44,12 @@ Create table turma (
  Primary Key (turma_id)) ENGINE = InnoDB;
 
 
+
 Create table disciplina (
 	disciplina_id Int NOT NULL AUTO_INCREMENT,
 	disciplina_descricao Varchar(20) NOT NULL,
  Primary Key (disciplina_id)) ENGINE = InnoDB;
+
 
 Create table aluno (
 	aluno_id Int NOT NULL AUTO_INCREMENT,
@@ -46,21 +62,23 @@ Create table aluno (
  Primary Key (aluno_id)) ENGINE = InnoDB;
 
 
+
 Create table pessoa_disciplina (
 	pessoa_disciplina_id Int NOT NULL AUTO_INCREMENT,
-	pessoa_id Int NOT NULL,
+	docente_id Int NOT NULL,
 	disciplina_id Int NOT NULL,
  Primary Key (pessoa_disciplina_id)) ENGINE = InnoDB;
 
 
 
--- Alter table pessoa add Foreign Key (tipo_id) references tipo_pessoa (tipo_id);
+
+Alter table administrador add Foreign  key (tipo_id) references tipo_pessoa (tipo_id);
+
+Alter table docente add Foreign  key (tipo_id) references tipo_pessoa (tipo_id);
 
 Alter table aluno add Foreign Key (turma_id) references turma (turma_id);
 
-Alter table pessoa_disciplina add Foreign Key (pessoa_id) references pessoa (pessoa_id);
+Alter table pessoa_disciplina add Foreign Key (docente_id) references docente (docente_id);
 
 Alter table pessoa_disciplina add Foreign Key (disciplina_id) references disciplina (disciplina_id);
 
-
-insert into pessoa (pessoa_nome, pessoa_cpf, pessoa_email, pessoa_celular, pessoa_senha, tipo_id) values ('Lucas', 555, 'a@hotmail.com', 9595, '123', 1);

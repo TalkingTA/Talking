@@ -1,15 +1,14 @@
 <?php
-
+	session_start();
     require_once '../../php/classes/Funcoes.class.php';
     $obj = new Funcoes();
     $obj->setTabela("tipo_pessoa");
     $dados = $obj->consultar();
- 
 ?>
 <!DOCTYPE html>
 <html lang="PT-BR">
 <head>
-	<title>Cadastro de Usuário</title>
+	<title>Cadastro de Administrador</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- IMPORTS -->
@@ -34,8 +33,8 @@
 	<script type="text/javascript">
 		//SÓ VAI INSERIR QUANDO O FORMULARIO FOR CARREGADO
 		$(document).ready(function(){
-			$("#cpfPessoa").mask("000.000.000-00")
-			$("#celularPessoa").mask("(00) 00000-0000")
+			$("#cpf").mask("000.000.000-00")
+			$("#celular").mask("(00) 00000-0000")
 
 			$("#rg").mask("99.999.999-W", {
 				translation: {
@@ -51,6 +50,13 @@
 	</script>
 </head>
 <body>
+	<?php
+		if(isset($_SESSION['msg'])){
+			echo $_SESSION['msg'];
+			unset($_SESSION['msg']);
+		}
+					
+	?>
 	
 	<div class="container-contact100">
 		<div class="wrap-contact100">
@@ -59,31 +65,31 @@
 				<!-- NOME -->
 				<div class="wrap-input100 validate-input bg1">
 					<span class="label-input100">Nome Completo</span>
-					<input class="input100" type="text" name="nomePessoa" id="nome" autocomplete="off" placeholder="Digite seu nome" required>
+					<input class="input100" type="text" name="nomeAdministrador" id="nome" autocomplete="off" placeholder="Digite seu nome" required>
 				</div>
 				
 	
 				<!-- CPF -->
 				<div class="wrap-input100 bg1 rs1-wrap-input100">
 					<span class="label-input100">CPF</span>
-					<input class="input100" type="text" name="cpfPessoa" id="cpfPessoa" autocomplete="off" placeholder="Digite seu CPF" required>
+					<input class="input100" type="text" name="cpfAdministrador" id="cpf" autocomplete="off" placeholder="Digite seu CPF" required>
 				</div>
 				
 				<!-- EMAIL -->
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100">
 					<span class="label-input100">Email</span>
-					<input class="input100" type="text" name="emailPessoa" id="email" autocomplete="off" placeholder="Digite seu e-mail" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+					<input class="input100" type="text" name="emailAdministrador" id="email" autocomplete="off" placeholder="Digite seu e-mail" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
 				</div>
 				
 				<!-- CELULAR -->
 				<div class="wrap-input100 bg1 rs1-wrap-input100">
 					<span class="label-input100">Celular</span>
-					<input class="input100" type="text" name="celularPessoa" id="celularPessoa" autocomplete="off" placeholder="Digite seu número" required>
+					<input class="input100" type="text" name="celularAdministrador" id="celular" autocomplete="off" placeholder="Digite seu número" required>
 				</div>
 
-				<!-- TIPO PESSOA -->
+				<!-- TIPO ADMINISTRADOR -->
 				<div class="wrap-input100 bg1 rs1-wrap-input100">
-					<span class="label-input100">Tipo de usuário</span>
+					<span class="label-input100">Tipo de Administrador</span>
 					<select name="tipo_id" class="form-control" required>
 						<option value="">---</option>
 						<?php for($i=0;$i<count($dados);$i++){ ?>
@@ -93,17 +99,10 @@
 				</div>
 				
 				 
-				<!-- FOTO -->
-				<div class="wrap-input100 validate-input bg1">
-					<span class="label-input100">Documento</span>
-					<input class="input100" type="file" name="imagemPessoa" id="imagem" autocomplete="off">
-				</div>
-
-				
 				<!-- SENHA -->
 				<div class="wrap-input100 validate-input bg1">
 					<span class="label-input100">Senha</span>
-					<input class="input100" type="password" name="senhaPessoa" id="senha" autocomplete="off" placeholder="Digite sua senha" required>
+					<input class="input100" type="password" name="senhaAdministrador" id="senha" autocomplete="off" placeholder="Digite sua senha" required>
 				</div>
 
 				<!-- BOTÃO CADASTRAR -->
@@ -111,7 +110,7 @@
 					<button class="contact100-form-btn">
 						<span>
 							<input type="hidden" name="operacao" value="cadastrar">
-							<button="submit" name="cadastrarAdm" class="login100-form-btn">CADASTRAR</button>
+							<button="submit" name="cadastrar" class="login100-form-btn">CADASTRAR</button>
 						</span>
 					</button>
 				</div>

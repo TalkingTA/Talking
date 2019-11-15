@@ -33,13 +33,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="#">Confirmar Usuários<span class="sr-only">(current)</span></a></li>
+           
             <li class="dropdown">
 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastrar<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="../../Cadastrar/alunos/alunos.php">Alunos</a></li>
                 <li><a href="../../Cadastrar/disciplinas/disciplinas.php">Disciplinas</a></li>
+                <li><a href="">Docentes</a></li>
                 <li><a href="../../Cadastrar/turmas/turmas.php">Turmas</a></li>
             
               </ul>
@@ -77,18 +78,16 @@
 
         <div class="col-sm-3">
           <div class="card" align="center">
+            <div class="card-body"><img src="images/icons/docente.ico"></div>
+            <div class="card-body">Docentes</div>
+          </div>
+        </div> 
+
+        <div class="col-sm-3">
+          <div class="card" align="center">
             <div class="card-body"><img src="images/icons/class.ico"></div>
             <div class="card-body"><a href="../../Cadastrar/turmas/turmas.php">Turmas</div>
           </div>
-        </div>
-
-        <div class="row">
-        <div class="col-sm-3">
-          <div class="card" align="center">
-            <div class="card-body"><img src="images/icons/check.ico"></div>
-            <div class="card-body">Usuários</div>
-          </div>
-        </div>  
         </div>
    
     

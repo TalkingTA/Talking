@@ -44,7 +44,7 @@
 					
 						<!-- BTN LOGAR -->
 						<div class="container-login100-form-btn">
-							<input type="hidden" name="operacao" value="logar">
+							<input type="hidden" name="operacao" value="enviarSenha">
 							<input type="submit" name="enviarSenha" class="login100-form-btn">
 						</div>
 

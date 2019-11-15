@@ -9,13 +9,12 @@ class Funcoes {
 
 
     //PESSOA
-    private $idPessoa;
-    private $nomePessoa;
-    private $cpfPessoa;
-    private $emailPessoa;
-    private $celularPessoa;
-    private $imagemPessoa;
-    private $senhaPessoa;
+    private $idAdministrador;
+    private $nomeAdministrador;
+    private $cpfAdministrador;
+    private $emailAdministrador;
+    private $celularAdministrador;
+    private $senhaAdministrador;
     private $tipoPessoa;
 
     //DISCIPLINA
@@ -26,14 +25,7 @@ class Funcoes {
     private $descricaoTurma;
     private $periodoTurma;
 
-  
-    //ALUNO
-    //private $id_aluno;
-   	//private $nomeAluno;
-    //private $ra;
-    //private $responsavel_aluno;
-    //private $turma;
-    //private $serie;
+    
    
 	private $tabela;
     
@@ -47,16 +39,16 @@ class Funcoes {
     // LOGIN PESSOA
 	public function logar($dados){
 		
-		$this->emailPessoa = $dados['email'];
-		$this->senhaPessoa = $dados['senha'];
+		$this->emailAdministrador = $dados['email'];
+		$this->senhaAdministrador = $dados['senha'];
 		
 		try{
 			
 			// BUSCANDO SE EXISTE O EMAIL E SENHA DO USUARIO CASO EXISTE VAI RETORNAR SUCESSO
-			$sql = $this->con->prepare("SELECT 'sucesso' as sucesso, pessoa_id FROM pessoa WHERE pessoa_email = :email AND pessoa_senha = :senha;");
+			$sql = $this->con->prepare("SELECT 'sucesso' as sucesso, administrador_id FROM administrador WHERE administrador_email = :email AND administrador_senha = :senha;");
 			
-			$sql->bindParam(":email", $this->emailPessoa, PDO::PARAM_STR);
-			$sql->bindParam(":senha", md5($this->senhaPessoa), PDO::PARAM_STR);
+			$sql->bindParam(":email", $this->emailAdministrador, PDO::PARAM_STR);
+			$sql->bindParam(":senha", md5($this->senhaAdministrador), PDO::PARAM_STR);
 			$sql->execute();
 			$reg = $sql->fetch(PDO::FETCH_ASSOC);
 
@@ -72,31 +64,29 @@ class Funcoes {
 	}
 
     // CADASTRO DE PESSOA
-    public function cadastrarPessoa($dados){
+    public function cadastrarAdministrador($dados){
 
         try{
 
-        	$this->nomePessoa 		= $dados['nomePessoa'];
-       	 	$this->cpfPessoa		= $dados['cpfPessoa'];
-        	$this->emailPessoa		= $dados['emailPessoa'];
-        	$this->celularPessoa  	= $dados['celularPessoa'];
-        	$this->imagemPessoa		= $dados['imagemPessoa'];
-        	$this->senhaPessoa 		= md5($dados['senhaPessoa']);
-        	$this->tipoPessoa  		= $dados['tipo_id'];
+        	$this->nomeAdministrador	= $dados['nomeAdministrador'];
+       	 	$this->cpfAdministrador		= $dados['cpfAdministrador'];
+        	$this->emailAdministrador	= $dados['emailAdministrador'];
+        	$this->celularAdministrador = $dados['celularAdministrador'];
+        	$this->senhaAdministrador 	= md5($dados['senhaAdministrador']);
+        	$this->tipoPessoa  		    = $dados['tipo_id'];
 
        
-        	$sql = $this->con->prepare("INSERT INTO pessoa (pessoa_nome, pessoa_CPF, pessoa_email, pessoa_celular, pessoa_imagem, pessoa_senha, tipo_id)VALUES (:nomePessoa, :cpfPessoa, :emailPessoa, :celularPessoa, :imagemPessoa, :senhaPessoa, :tipoPessoa);");
+        	$sql = $this->con->prepare("INSERT INTO administrador (administrador_nome, administrador_CPF, administrador_email, administrador_celular, administrador_senha, tipo_id)VALUES (:nomeAdministrador, :cpfAdministrador, :emailAdministrador, :celularAdministrador, :senhaAdministrador, :tipoPessoa);");
 
 			// USADO BINDPARAM PARA VINCULAR A VARIÁVEL
 			//PDO(PHP Data Objects) É UM MÓDULO DE PHP MONTADO SOB O PARADIGMA OO, COM OBJETIVO DE PATRONIZAR A COMUNICAÇÃO DO PHP COM UM BANCO DE DADOS RELACIONAL
 			
-            $sql->bindParam(":nomePessoa", 		$this->nomePessoa, PDO::PARAM_STR);
-            $sql->bindParam(":cpfPessoa", 		$this->cpfPessoa, PDO::PARAM_STR);
-            $sql->bindParam(":emailPessoa", 	$this->emailPessoa, PDO::PARAM_STR);
-            $sql->bindParam(":celularPessoa", 	$this->celularPessoa, PDO::PARAM_STR);
-            $sql->bindParam(":imagemPessoa", 	$this->imagemPessoa, PDO::PARAM_STR);
-            $sql->bindParam(":senhaPessoa", 	$this->senhaPessoa, PDO::PARAM_STR);
-            $sql->bindParam(":tipoPessoa",      $this->tipoPessoa, PDO::PARAM_STR);
+            $sql->bindParam(":nomeAdministrador", 	$this->nomeAdministrador, PDO::PARAM_STR);
+            $sql->bindParam(":cpfAdministrador", 	$this->cpfAdministrador, PDO::PARAM_STR);
+            $sql->bindParam(":emailAdministrador", 	$this->emailAdministrador, PDO::PARAM_STR);
+            $sql->bindParam(":celularAdministrador",$this->celularAdministrador, PDO::PARAM_STR);
+            $sql->bindParam(":senhaAdministrador", 	$this->senhaAdministrador, PDO::PARAM_STR);
+            $sql->bindParam(":tipoPessoa",          $this->tipoPessoa, PDO::PARAM_STR);
             
             
             
@@ -110,24 +100,8 @@ class Funcoes {
         }
     }
 
-    public function enviarCadastro($dados){
-        $pagina = '';
- 
-        $ch = curl_init();
-         
-        curl_setopt( $ch, CURLOPT_URL, $pagina );
-        curl_setopt( $ch, CURLOPT_POST, true );
-        curl_setopt( $ch, CURLOPT_POSTFIELDS, $dados);
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-        curl_setopt( $ch, CURLOPT_HEADER, true );
-         
-       $retorno = curl_exec($ch);
-            
-        curl_close($ch);
-    }
 
     // CADASTRO DE DISCIPLINA
-
     public function cadastrarDisciplina($dados){
 
     	try{
@@ -204,6 +178,25 @@ class Funcoes {
         } catch (PDOException $ex) {
             return 'error '.$ex->getMessage();
         }
+    }
+
+    // ENVIAR EMAIL APOS SE CADASTRAR
+    public function enviarEmail($dados){
+
+        $nome  = $_REQUEST['nomeAdministrador'];
+        $to    = $_REQUEST['emailAdministrador'];
+
+        $origem = "TalkingTA@hotmail.com";
+        $msg    ="Seja bem vindo a TalkingTA!";
+        //$header = "MIME-Version: 1.0";
+        $header = "Content-type: text/html; charset='iso-8859-1'";
+        $header = "From: $origem Replay-to: $to";
+
+        $header = "Olá $nome \n";
+        $header   ="Seu cadastro foi realizado com sucesso!";
+
+        mail($to, $msg, $header);
+        
     }
 
 

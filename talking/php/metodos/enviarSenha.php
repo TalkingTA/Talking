@@ -1,5 +1,5 @@
 <?php
-	
+require_once '../classes/Funcoes.class.php';	
 $erro = array();
 
 $mysqli = mysqli_connect("localhost","root","","talking");
@@ -14,7 +14,7 @@ $mysqli = mysqli_connect("localhost","root","","talking");
 		}
 
 
-
+		
 		if(count($erro) == 0){
 
 			$novasenha = substr(md5(time()), 0, 6);
@@ -23,7 +23,7 @@ $mysqli = mysqli_connect("localhost","root","","talking");
 
 			if(mail($email, "Sua nova senha", "Sua nova senha foi redefinida para: ".$novasenha)){
 
-				$sql_code = "UPDATE administrador SET senha_adm = '$senhaNova' WHERE email_adm = '$email'";
+				$sql_code = "UPDATE pessoa SET senha_pessoa = '$senhaNova' WHERE email_pessoa = '$email'";
 				$sql_query = $mysqli->query($sql_code) or die($mysqli->error);
 				header('location:../../recuperarSenha/recuperarSenha.php');
 			}

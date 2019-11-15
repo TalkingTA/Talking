@@ -22,46 +22,15 @@
 
   <body>
     <div class="container">
-      <form>
-          
-        <div class="form-group">
-          <label for="senhaAtual">Senha atual</label>
-          <input type="password" name="senhaAtual" class="form-control" id="senhaAtual" placeholder="Digite sua senha atual" required="required">
-        </div>
+     <form method="POST" action="../../php/metodos/alterarSenha.php">
 
         <div class="form-group">
           <label for="novaSenha">Nova senha</label>
           <input type="password" name="novaSenha" class="form-control" id="novaSenha" placeholder="Nova senha" required="required">
         </div>
-        <div class="form-group">
-          <label for="confirmarSenha">Confirmar nova senha</label>
-          <input type="password" name="confirmarSenha" class="form-control" id="confirmarSenha" placeholder="Confirmar nova senha" required="required">
-        </div>
 
-        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#MyModal">Alterar</button>
-
-        <!-- MOLDAL CONFIRMAR ALTERAÇÃO DA SENHA -->
-        <div id="MyModal" class="modal fade">
-          <div class="modal-dialog modal-lg">
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              </div>
-              <div class="modal-body">
-                Deseja realmente alterar sua senha?
-              </div>
-              <div class="modal-footer">
-                <!-- BOTÃO ALTERAR-->
-                <input type="hidden" name="operacao" value="alterarSenha">
-                <button type="submit" name="alterarSenha" class="btn btn-primary" data-dismiss="">Sim</button>
-                 <!-- BOTÃO CADASTRAR-->
-                <button type="submit" name="fecharModal" class="btn btn-primary" data-dismiss="modal">Não</button>
-               
-              </div>
-            </div>
-          </div>
-       </div>
+        <input type="hidden" name="operacao" value="alterarSenha">
+        <button type="submit" name="alterarSenha" class="btn btn-primary" data-dismiss="">Alterar Senha</button>
       </form>
     </div>
   </body>

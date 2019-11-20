@@ -51,7 +51,15 @@ $obj->setTabela("tipo_pessoa");
 
 				$obj->enviarEmail($_REQUEST);
 
-				header('location:../../Cadastrar/cadastroADM/cad.php');
+				header('location:../../Inicio/login/index.php');
+			}
+			else {
+
+				echo '<script type="text/javascript">
+				alert("Administrador não cadastrado!!");
+				window.location="../../Cadastrar/cadastroADM/cad.php";
+				</script>';
+
 			}
 			
 		}
@@ -114,8 +122,16 @@ $obj->setTabela("tipo_pessoa");
 
 	if(isset($_POST['enviarSenha'])){
 
-		$obj->enviarSenha($_POST);
-			
+		if($obj->enviarSenha($_POST)== 'ok'){
+
+			$_SESSION['msg'] = " <p class='alert alert-primary'>As senhas não coincidente!</p>";
+			header('location:../../Configuracao/recuperarSenha/recuperarSenha.php');
+		}else {
+
+			$_SESSION['msg'] = " <p class='alert alert-danger'>E-mail não cadastrado!</p>";
+			header('location:../../Configuracao/recuperarSenha/recuperarSenha.php');
+
+		}
 	}
 
 ?>

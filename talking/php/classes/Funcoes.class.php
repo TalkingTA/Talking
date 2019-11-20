@@ -203,20 +203,39 @@ class Funcoes {
     }
 
     public function enviarSenha($dados){
-        $this->emailDestinatario    = $dados['emailEnviar'];
-        $emailEnviar    = $_REQUEST['emailEnviar'];
+
+        try{
+
+            $emailEnviar    = $_REQUEST['emailEnviar'];
         
-        $novasenha = substr(md5(time()), 0, 6);
-        $senhaNova = md5(md5($novasenha));
+            $novasenha = substr(md5(time()), 0, 6);
+            $senhaNova = md5(md5($novasenha));
 
-        if(mail($emailEnviar, "Sua nova senha", "Sua nova senha foi redefinida para: ".$novasenha)){
-
-            $sql_code = "UPDATE administrador SET senha_administrador = '$senhaNova' WHERE email_administrador = '$emailEnviar'";
-            $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
-            header('location:../../recuperarSenha/recuperarSenha.php');
-         }
+            $origem = "TalkingTA@hotmail.com";
+            $msg    ="Estamos enviando sua nova senha";
+            //$header = "MIME-Version: 1.0";
+            $header = "Content-type: text/html; charset='iso-8859-1'";
+            $header = "From: $origem Replay-to: $emailEnviar";
+            //$header = "Ola $emailEnviar \n";
         
+        
+            if(mail($emailEnviar, $msg, $header, "Sua nova senha foi redefinida para: ".$novasenha)){
 
+                $query  = "UPDATE administrador SET senha_administrador = '$senhaNova' WHERE email_administrador = '$emailEnviar'";
+                $sql = $mysqli->query($query) or die($mysqli->error);
+                header('location:../../recuperarSenha/recuperarSenha.php');
+
+                if($sql->execute()){
+                    return 'ok';
+                }else{
+                    return 'erro';
+                }
+            }
+
+
+        }catch (PDOException $ex) {
+            return 'error '.$ex->getMessage();
+        }
         
     }
 

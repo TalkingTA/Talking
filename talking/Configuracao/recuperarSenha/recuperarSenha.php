@@ -1,4 +1,4 @@
-
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="PT-BR">
 <head>
@@ -40,7 +40,13 @@
 								<i class="fa fa-envelope" aria-hidden="true"></i>
 							</span>
 						</div>
+						<?php
+							if(isset($_SESSION['msg'])){
+								echo $_SESSION['msg'];
+								unset($_SESSION['msg']);
+							}
 					
+						?>
 					
 						<!-- BTN LOGAR -->
 						<div class="container-login100-form-btn">

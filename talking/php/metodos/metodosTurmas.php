@@ -8,7 +8,7 @@ $obj->setTabela("turma");
 
 
 	// CADASTRAR TURMA
-	if($_POST['operacao'] == "cadTurma"){
+	if(isset($_POST['cadTurma'])){
 
 		if($obj->cadastrarTurma($_POST) == 'ok'){
 
@@ -54,6 +54,13 @@ $obj->setTabela("turma");
 		window.location="../../Cadastrar/turmas/turmas.php";	
 		</script>';
 			
+
+	}
+
+	// PESQUISAR TURMA
+	if(isset($_POST['pesquisarTurma'])){
+		$where = "turma_periodo=" . $_POST['pesquisar'];
+		$dados  = $obj->consultar($where); 
 
 	}
 

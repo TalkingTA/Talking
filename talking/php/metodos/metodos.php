@@ -36,37 +36,24 @@ $obj->setTabela("tipo_pessoa");
 	// CADASTRAR ADMINISTRADOR
 	if($_POST['operacao'] == "cadastrar"){
 
-		if($obj->cadastrarAdministrador($_POST) == 'ok'){
+		$senha  		= $_POST['senhaAdministrador'];
+		$senhaConfirma  = $_POST['confirmarSenha'];
 
-			$obj->enviarEmail($_REQUEST);
+		if($senha <> $senhaConfirma){
 
-			// $_SESSION['msg'] = "<script type='text/javascript'>
-			// 	function() {
-			//       ('#open-modal').trigger('click');
-			//       <button id='open-modal' type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal'>Open Modal</button>
-			//     	<div class='modal fade' id='myModal' role='dialog'>
-			//     		<div class='modal-dialog'>
-			//       		<div class='modal-content'>
-			//         	<div class='modal-header'>
-			//           		<button type='button' class='close' data-dismiss='modal'>&times;</button>
-			//         	</div>
-			//         	<div class='modal-body'>
-			//           		<p>Cadastrado com sucesso!</p>
-			//         	</div>
-			//         	<div class='modal-footer'>
-			//           		<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-			//         	</div>
-		 //     		</div>
-			// 	};
-			// </script>";
+			$_SESSION['msg'] = " <p class='alert alert-danger'>As senhas não coincidente!</p>";
+			header('location:../../Cadastrar/cadastroADM/cad.php');
 
-			header('location:../../Inicio/login/index.php');
-			
 		}
 		else{
 
-			header('location:../../Inicio/login/index.php');
+			if($obj->cadastrarAdministrador($_POST) == 'ok'){
 
+				$obj->enviarEmail($_REQUEST);
+
+				header('location:../../Cadastrar/cadastroADM/cad.php');
+			}
+			
 		}
 
 	}
@@ -123,6 +110,12 @@ $obj->setTabela("tipo_pessoa");
 		</script>';
 			
 
+	}
+
+	if(isset($_POST['enviarSenha'])){
+
+		$obj->enviarSenha($_POST);
+			
 	}
 
 ?>

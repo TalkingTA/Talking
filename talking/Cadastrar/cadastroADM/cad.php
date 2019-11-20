@@ -50,13 +50,6 @@
 	</script>
 </head>
 <body>
-	<?php
-		if(isset($_SESSION['msg'])){
-			echo $_SESSION['msg'];
-			unset($_SESSION['msg']);
-		}
-					
-	?>
 	
 	<div class="container-contact100">
 		<div class="wrap-contact100">
@@ -105,6 +98,20 @@
 					<input class="input100" type="password" name="senhaAdministrador" id="senha" autocomplete="off" placeholder="Digite sua senha" required>
 				</div>
 
+				<div class="wrap-input100 validate-input bg1">
+					<span class="label-input100">Confirmar senha</span>
+					<input class="input100" type="password" name="confirmarSenha" id="senha" autocomplete="off" placeholder="Confirme sua senha" required>
+				</div>
+
+				<div>
+				<?php
+					if(isset($_SESSION['msg'])){
+						echo $_SESSION['msg'];
+						unset($_SESSION['msg']);
+					}
+					
+				?>
+				</div>
 				<!-- BOTÃO CADASTRAR -->
 				<div class="container-contact100-form-btn">
 					<button class="contact100-form-btn">

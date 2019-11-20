@@ -25,6 +25,9 @@ class Funcoes {
     private $descricaoTurma;
     private $periodoTurma;
 
+    // RECUPERAR SENHA
+    private $emailDestinatario;
+
     
    
 	private $tabela;
@@ -196,6 +199,24 @@ class Funcoes {
         $header   ="Seu cadastro foi realizado com sucesso!";
 
         mail($to, $msg, $header);
+        
+    }
+
+    public function enviarSenha($dados){
+        $this->emailDestinatario    = $dados['emailEnviar'];
+        $emailEnviar    = $_REQUEST['emailEnviar'];
+        
+        $novasenha = substr(md5(time()), 0, 6);
+        $senhaNova = md5(md5($novasenha));
+
+        if(mail($emailEnviar, "Sua nova senha", "Sua nova senha foi redefinida para: ".$novasenha)){
+
+            $sql_code = "UPDATE administrador SET senha_administrador = '$senhaNova' WHERE email_administrador = '$emailEnviar'";
+            $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
+            header('location:../../recuperarSenha/recuperarSenha.php');
+         }
+        
+
         
     }
 

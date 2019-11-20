@@ -27,14 +27,14 @@
 			<div class="wrap-login100">
 				
 				<div class="wrap-contact100">
-					<form class="contact100-form validate-form" action="../../php/metodos/enviarSenha.php" method="POST">
+					<form class="contact100-form validate-form" action="../../php/metodos/metodos.php" method="POST">
 						<span class="contact100-form-title">
 							Recuperar Senha
 						</span>
 				
 						<!-- INPUT EMAIL -->
 						<div class="wrap-input100 validate-input"">
-							<input class="input100" type="text" name="email" id="email" autocomplete="off" placeholder="Digite seu E-mail" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+							<input class="input100" type="text" name="emailEnviar" id="email" autocomplete="off" placeholder="Digite seu E-mail" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
 							<span class="focus-input100"></span>
 							<span class="symbol-input100">
 								<i class="fa fa-envelope" aria-hidden="true"></i>

@@ -77,11 +77,11 @@
     <div class="divPadding">
       <div class="container">
         <div class="col-sm-6 col-md-6">
-          <form class="navbar-form navbar-left" role="search" method="GET" action="../../php/metodos/metodos.php">
+          <form class="navbar-form navbar-left" role="search" method="POST" action="../../php/metodos/metodosTurmas.php">
             <div class="form-group">
-              <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar">
+              <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar por período">
             </div>
-            <button type="submit" name="buscarTurma" class="btn btn-primary">Buscar</button>
+            <button type="submit" name="pesquisarTurma" class="btn btn-primary">Buscar</button>
           </form>
         </div>
         <div class="col-sm-6 col-md-6">
@@ -257,7 +257,6 @@
             </div>
             <div class="modal-footer">
               <!-- BOTÃO CADASTRAR-->
-              <input type="hidden" name="operacao" value="cadTurma">
               <button type="submit" name="cadTurma" class="btn btn-primary" data-dismiss="">Cadastrar</button>
               <!-- BOTÃO LIMPAR-->
               <input type="button" class="btn btn-default" value="Limpar campos" onClick="limpa()">

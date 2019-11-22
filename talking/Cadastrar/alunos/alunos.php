@@ -7,6 +7,7 @@
     require_once '../../php/classes/Funcoes.class.php';
     $obj = new Funcoes();
     $obj->setTabela("aluno");
+    //$obj->setTabela("turma");
     $dados = $obj->consultar();
   }
 ?>
@@ -46,13 +47,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="../../Inicio/menuInicial/menu.php">Início<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Confirmar Usuários<span class="sr-only">(current)</span></a></li>
             <li class="dropdown">
 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastrar<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="../../Cadastrar/alunos/alunos.php">Alunos</a></li>
                 <li><a href="../../Cadastrar/disciplinas/disciplinas.php">Disciplinas</a></li>
+                <li><a href="../../Cadastrar/pessoas/pessoas.php">Pessoas</a></li>
                 <li><a href="../../Cadastrar/turmas/turmas.php">Turmas</a></li>
             
               </ul>
@@ -105,34 +105,30 @@
               <th class="col-sm-2">RA</th>
               <th class="col-sm-2">Responsável</th>
               <th class="col-sm-2">Turma</th>
-              <th class="col-sm-2">Serie</th>
               <th class="col-sm-2">Ações</th>
             </tr>
           </thead>
           <tbody>
-            <input type="hidden" name="id_aluno" value="<?= $dados[$i]['id_aluno'] ?>">
+            <input type="hidden" name="aluno_id" value="<?= $dados[$i]['aluno_id'] ?>">
             <tr>   
-              <td><?php echo $dados[$i]['nome_aluno']?></td>  
-              <td><?php echo $dados[$i]['ra_aluno']?></td>  
-              <td><?php echo $dados[$i]['responsavel_aluno']?></td> 
-              <td><?php echo $dados[$i]['turma_aluno']?></td>  
-              <td><?php echo $dados[$i]['serie_aluno']?></td>  
+              <td><?php echo $dados[$i]['aluno_nome']?></td>  
+              <td><?php echo $dados[$i]['aluno_ra']?></td>  
+              <td><?php echo $dados[$i]['aluno_responsavel']?></td> 
+              <td><?php echo $dados[$i]['turma_id']?></td>  
                
 
-              <td>   
-                <button type="button" name="visualizar" class="btn btn-primary" data-toggle="modal" data-target="#ModalVisualizar<?php echo $dados[$i]['id_aluno']; ?>">   Visualizar
+              <td nowrap>   
+                <button type="button" name="visualizar" class="btn btn-primary" data-toggle="modal" data-target="#ModalVisualizar<?php echo $dados[$i]['aluno_id']; ?>">   Visualizar
                 </button>
-              </td>
-              <td>   
-                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ModalAlterar<?php echo $dados[$i]['id_aluno']; ?>">Alterar</button>
-              </td>
-              <td>
-                <button type="button" name="excluir" class="btn btn-danger" data-toggle="modal" data-target="#ModalExcluir<?php echo $dados[$i]['id_aluno']; ?>">Excluir</button>
+               
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ModalAlterar<?php echo $dados[$i]['aluno_id']; ?>">Alterar</button>
+              
+                <button type="button" name="excluir" class="btn btn-danger" data-toggle="modal" data-target="#ModalExcluir<?php echo $dados[$i]['aluno_id']; ?>">Excluir</button>
               </td>
             </tr>
 
             <!-- MODAL VISUALIZAR ALUNO -->
-            <div class="modal fade" id="ModalVisualizar<?php echo $dados[$i]['id_aluno']; ?>"" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="ModalVisualizar<?php echo $dados[$i]['aluno_id']; ?>"" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <!-- MODAL TITULO -->
@@ -142,12 +138,14 @@
                   </div>
                   <!-- MODAL TITULO -->
                   <div class="modal-body">
-                    <p>Código:        <?php echo $dados[$i]['id_aluno']?></p> 
-                    <p>Nome Completo: <?php echo $dados[$i]['nome_aluno']?></p> 
-                    <p>RA:            <?php echo $dados[$i]['ra_aluno']?></p>  
-                    <p>Responsável:   <?php echo $dados[$i]['responsavel_aluno']?></p> 
-                    <p>Turma:         <?php echo $dados[$i]['turma_aluno']?></p>  
-                    <p>Serie:         <?php echo $dados[$i]['serie_aluno']?></p>   
+                    <p>Código:        <?php echo $dados[$i]['aluno_id']?></p> 
+                    <p>Nome Completo: <?php echo $dados[$i]['aluno_nome']?></p> 
+                    <p>RA:            <?php echo $dados[$i]['aluno_ra']?></p>  
+                    <p>Idade:         <?php echo $dados[$i]['aluno_idade']?></p>  
+                    <p>Sexo:          <?php echo $dados[$i]['aluno_sexo']?></p>  
+                    <p>Responsável:   <?php echo $dados[$i]['aluno_responsavel']?></p> 
+                    <p>Turma:         <?php echo $dados[$i]['turma_id']?></p>  
+                    <p>Status:        <?php echo $dados[$i]['aluno_status']?></p> 
                     
                   </div>
                   <!-- MODAL BUTTONS -->
@@ -159,7 +157,7 @@
             </div>
 
             <!-- MODAL ALTERAR ALUNO -->
-            <div class="modal fade" id="ModalAlterar<?php echo $dados[$i]['id_aluno']; ?>"" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="ModalAlterar<?php echo $dados[$i]['aluno_id']; ?>"" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <!-- MODAL TITULO -->
@@ -171,19 +169,26 @@
                   <div class="modal-body">
 
                     <span class="label-input100">Nome completo</span>
-                    <input class="input100" type="text" name="nomeAluno" value="<?= $dados[$i]['nome_aluno']  ?>">
+                    <input class="input100" type="text" name="nomeAluno" value="<?= $dados[$i]['aluno_nome']  ?>">
 
                     <span class="label-input100">RA</span>
-                    <input class="input100" type="text" name="ra" value="<?= $dados[$i]['ra_aluno']  ?>">
+                    <input class="input100" type="text" name="ra" value="<?= $dados[$i]['aluno_ra']  ?>">
+
+                    <span class="label-input100">Idade</span>
+                    <input class="input100" type="text" name="idade" value="<?= $dados[$i]['aluno_idade']  ?>">
+
+                    <span class="label-input100">Sexo</span>
+                    <input class="input100" type="text" name="sexo" value="<?= $dados[$i]['aluno_sexo']  ?>">
 
                     <span class="label-input100">Responsável</span>
-                    <input class="input100" type="text" name="responsavel_aluno" value="<?= $dados[$i]['responsavel_aluno']  ?>">
+                    <input class="input100" type="text" name="responsavelAluno" value="<?= $dados[$i]['aluno_responsavel']  ?>">
 
                     <span class="label-input100">Turma</span>
-                    <input class="input100" type="text" name="turma" value="<?= $dados[$i]['turma_aluno']  ?>">
+                    <input class="input100" type="text" name="turma" value="<?= $dados[$i]['turma_id']  ?>">
 
-                    <span class="label-input100">Serie</span>
-                    <input class="input100" type="text" name="serie" value="<?= $dados[$i]['serie_aluno']  ?>">
+                    <span class="label-input100">Status</span>
+                    <input class="input100" type="text" name="status" value="<?= $dados[$i]['aluno_status']  ?>">
+
                     
                   </div>
                   <!-- MODAL BUTTONS -->
@@ -196,7 +201,7 @@
             </div>
 
             <!-- MODAL EXCLUIR ALUNO -->
-            <div class="modal fade" id="ModalExcluir<?php echo $dados[$i]['id_aluno']; ?>"" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="ModalExcluir<?php echo $dados[$i]['aluno_id']; ?>"" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <!-- MODAL TITULO -->
@@ -230,44 +235,63 @@
        if(document.getElementById('nomeAluno').value!=""){
           document.getElementById('nomeAluno').value="";
           document.getElementById('raAluno').value="";
+          document.getElementById('idadeAluno').value="";
+          document.getElementById('sexoAluno').value="";
           document.getElementById('nomeResponsavel').value="";
-          document.getElementById('turma').value="";
-          document.getElementById('serie').value="";
+          document.getElementById('turmaAluno').value="";
+          document.getElementById('statusAluno').value="";
+          
         }  
       }
     </script>
+   
 
     <!-- MOLDAL COMEÇO -->
     <form method="POST" action="../../php/metodos/metodos.php">
       <!-- MOLDAL CADASTRAR ALUNOS -->
-      <div id="MyModal" class="modal fade">
+      <div class="modal fade bd-example-modal-lg" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <!-- Modal content-->
           <div class="modal-content">
         
             <div class="modal-body">
                     
-              <!-- NOME DO ALUNO-->
               <span class="label-input100">Nome completo</span>
-              <input class="input100" type="text" name="nomeAluno" id="nomeAluno" placeholder="Digite o nome do Aluno" required>
-                    
-              <!-- RA DO ALUNO-->
+              <input class="input100" type="text" name="nomeAluno" id="nomeAluno "placeholder="Digite o nome do Aluno" required>
+
               <span class="label-input100">RA</span>
-              <input class="input100" type="text" name="ra" id="raAluno" placeholder="Digite o RA do Aluno" required>
-                   
+              <input class="input100" type="text" name="ra" id="raAluno "placeholder="Digite o ra do Aluno" required>
 
-              <!-- RESPONSÁVEL DO ALUNO-->
-              <span class="label-input100">Nome do Responsável</span>
-              <input class="input100" type="text" name="responsavel_aluno" id="nomeResponsavel" placeholder="Digite o nome do Responsável" required>
-                  
-              <!-- TURMA DO ALUNO-->
+              <span class="label-input100">Idade</span>
+              <input class="input100" type="number" name="idade" id="idadeAluno "placeholder="Digite a idade do Aluno">
+
+              <span class="label-input100">Sexo</span>
+              <select name="sexo" id="sexoAluno" class="form-control" placeholder="Escolha o sexo do Aluno" required>
+                <option value="">---</option>
+                <option value="M">Masculino</a>  
+                <option value="F">Feminino</a>
+              </select>
+
+              <span class="label-input100">Responsável</span>
+              <input class="input100" type="text" name="responsavelAluno" id="responsavelAluno "placeholder="Digite o nome do responsável do Aluno">
+
               <span class="label-input100">Turma</span>
-              <input class="input100" type="text" name="turma" id="turma" placeholder="Digite a turma do Aluno" required>
-                    
+              <input class="input100" type="text" name="turmaAluno" id="turmaAluno" "placeholder="Digite o nome do responsável do Aluno">
 
-              <!-- SERIE DO ALUNO-->
-              <span class="label-input100">Série</span>
-              <input class="input100" type="text" name="serie" id="serie" placeholder="Digite a série do Aluno"   required>
+              <!-- <span class="label-input100">Turma</span>
+              <select name="turmaAluno" class="form-control" required>
+                <option value="">---</option>
+                  <?php for($i=0;$i<count($dados);$i++){ ?>
+                <option value="<?php echo $dados[$i]['turma_id']; ?>"><?php echo $dados[$i]['turma_id'];?></a>
+                <?php } ?>  
+              </select> -->
+
+              <span class="label-input100">Status</span>
+              <select name="statusAluno" id="statusAluno" class="form-control" placeholder="Escolha o status do Aluno" required>
+                <option value="">---</option>
+                <option value="A">Ativo</a>  
+                <option value="I">Inativo</a>
+              </select>
                     
             </div>
             <div class="modal-footer">

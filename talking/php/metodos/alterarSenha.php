@@ -5,12 +5,26 @@ $obj = new Funcoes();
 $obj->setTabela("administrador");
 
 	// ALTERAR SENHA
-	if($_POST['operacao'] == "alterarSenha"){
-		$acao = null;
-		$dados = array();
-		$where = "administrador_id=" . $_POST['administrador_id'];	 
-		$dados["administrador_senha"]  =  	"'" . $_POST['novaSenha'] . "'";
-		$obj->alterar($where,$dados);
+	if(isset($_POST['alterarSenha'])){
+		
+		$senha  		= $_POST['novaSenha'];
+		$senhaConfirma  = $_POST['confirmarSenha'];
+
+		if($senha <> $senhaConfirma){
+
+			$_SESSION['msg'] = " <p class='alert alert-danger'>As senhas não coincidente!</p>";
+			header('location:../../Configuracao/alterarSenha/alterarSenha.php');
+			
+		}
+		else{
+
+			$email = $_POST['email'];
+			$_SESSION['email'] = $email;
+		
+			$obj->alterarSenha($_POST) and ($_SESSION);
+			header('location:../../Configuracao/alterarSenha/alterarSenha.php');
+			
+		}
 	
 	}
 

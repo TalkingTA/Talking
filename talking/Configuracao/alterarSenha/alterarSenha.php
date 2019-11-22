@@ -1,42 +1,74 @@
-<!doctype html>
+<?php session_start() ?>
+<!DOCTYPE html>
 <html lang="PT-BR">
-  <head>
-    
-    <!-- IMPORTS -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- JQUERY -->
-    <link rel="stylesheet" href="js/jquery-2.1.3.min.js">
-    <link rel="stylesheet" href="js/bootstrap.min.js">
+<head>
+	<title>Alterar senha</title>
+	<meta charset="UTF-8">
+	<!-- IMPORTS DE BOOTSTRAP -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- IMPORTS -->
 
-    <!--BOOTSTRAP-->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    
+	<!-- ICONE -->
+	<link rel="icon" type="image/png" href="images/icons/key.ico"/>
 
-    <title>Alterar Senha</title>
-  </head>
+	<!-- FONTS -->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
-  <body>
-    <div class="container">
-     <form method="POST" action="../../php/metodos/alterarSenha.php">
+	<!-- BOOTSTRAP-->
+	
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	
+		
+		<div class="container-login100">
 
-        <div class="form-group">
-          <label for="novaSenha">Nova senha</label>
-          <input type="password" name="novaSenha" class="form-control" id="novaSenha" placeholder="Nova senha" required="required">
-        </div>
+			<div class="wrap-login100">
+				
+				<div class="wrap-contact100">
+					<form class="contact100-form validate-form" action="../../php/metodos/alterarSenha.php" method="POST">
+						<span class="contact100-form-title">
+							Alterar Senha
+						</span>
+				
+						<div class="wrap-input100 validate-input">
+							<input class="input100" type="password" name="novaSenha" id="senha" autocomplete="off" placeholder="Nova senha" required>
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+							</span>
+						</div>
 
-        <input type="hidden" name="operacao" value="alterarSenha">
-        <button type="submit" name="alterarSenha" class="btn btn-primary" data-dismiss="">Alterar Senha</button>
-      </form>
-    </div>
-  </body>
- <!-- IMPORTANDO O JQUERY-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<!-- IMPORTANDO JS E BOOTSTRAAP -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+						<div class="wrap-input100 validate-input">
+							<input class="input100" type="password" name="confirmarSenha" id="senha" autocomplete="off" placeholder="Confirmar Nova senha" required>
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+							</span>
+						</div>
+						<?php
+							if(isset($_SESSION['msg'])){
+								echo $_SESSION['msg'];
+								unset($_SESSION['msg']);
+							}
+					
+						?>
+					
+						<!-- BTN LOGAR -->
+						<div class="container-login100-form-btn">
+							<input type="submit" name="alterarSenha" value="Alterar" class="login100-form-btn">
+						</div>
 
+
+				
+					</form>
+				
+				</div>
+			</div>
+		</div>
+
+	
+
+</body>
 </html>

@@ -51,8 +51,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastrar<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="../../Cadastrar/alunos/alunos.php">Alunos</a></li>
-                <li><a href="../../Cadastrar/disciplinas/disciplinas.php">Disciplinas</a></li>
-                <li><a href="../../Cadastrar/disciplinas/docentes.php">Docentes</a></li>
+                <li><a href="../../Cadastrar/pessoas/pessoas.php">Pessoas</a></li>
                 <li><a href="../../Cadastrar/turmas/turmas.php">Turmas</a></li>
             
               </ul>

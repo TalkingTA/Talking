@@ -52,8 +52,7 @@
               <ul class="dropdown-menu">
                 <li><a href="../../Cadastrar/alunos/alunos.php">Alunos</a></li>
                 <li><a href="../../Cadastrar/disciplinas/disciplinas.php">Disciplinas</a></li>
-                <li><a href="../../Cadastrar/disciplinas/docentes.php">Docentes</a></li>
-                <li><a href="../../Cadastrar/turmas/turmas.php">Turmas</a></li>
+                <li><a href="../../Cadastrar/pessoas/pessoas.php">Pessoas</a></li>
             
               </ul>
             </li>
@@ -170,8 +169,9 @@
                     <input type="text" class="input100" name="descricao" value="<?= $dados[$i]['turma_descricao']  ?>"> 
                     <label class="label-input100">Período:</label>
                     <input type="text" class="input100" name="periodo" value="<?= $dados[$i]['turma_periodo']  ?>"> 
-                    
-                  
+
+
+
                   </div>
                   <!-- MODAL BUTTONS -->
                   <div class="modal-footer">
@@ -247,9 +247,9 @@
               <!-- PERIODO TURMA -->
               <span class="label-input100">Período</span>
               <select name="turma_periodo" class="form-control" placeholder="Escolha um período" required>
-              <option value="">---</option>
-              <option value="Manha">Manha</a>  
-              <option value="Tarde">Tarde</a>
+                <option value="">---</option>
+                <option value="Manha">Manha</a>  
+                <option value="Tarde">Tarde</a>
               </select>
         
                 

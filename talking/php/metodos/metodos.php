@@ -79,10 +79,10 @@ $obj->setTabela("tipo_pessoa");
 		}
 		else{
 
-			echo '<script type="text/javascript">
-			alert("Aluno não cadastrado!!");
-			window.location="../../Cadastrar/alunos/alunos.php";
-			</script>';
+			// echo '<script type="text/javascript">
+			// alert("Aluno não cadastrado!!");
+			// window.location="../../Cadastrar/alunos/alunos.php";
+			// </script>';
 
 		}
 
@@ -124,7 +124,7 @@ $obj->setTabela("tipo_pessoa");
 
 		if($obj->enviarSenha($_POST)== 'ok'){
 
-			$_SESSION['msg'] = " <p class='alert alert-primary'>As senhas não coincidente!</p>";
+			$_SESSION['msg'] = " <p class='alert alert-primary'>E-mail com nova senha enviado!</p>";
 			header('location:../../Configuracao/recuperarSenha/recuperarSenha.php');
 		}else {
 

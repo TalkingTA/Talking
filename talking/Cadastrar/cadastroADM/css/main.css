@@ -190,10 +190,10 @@ iframe {
 
 .wrap-contact100 {
   width: 800px;
-  background: #EEE9E9;
+  background: #FFF;
   border-radius: 10px;
   overflow: hidden;
-  padding: 62px 55px 90px 55px;
+  padding: 50px 55px 20px 55px;
 }
 
 
@@ -234,8 +234,8 @@ iframe {
   position: relative;
   border: 1px solid #e6e6e6;
   border-radius: 25px;
-  padding: 10px 30px 9px 22px;
-  margin-bottom: 20px;
+  padding: 10px 30px 0px 22px;
+  margin-bottom: 10px;
 }
 
 .rs1-wrap-input100 {
@@ -245,7 +245,7 @@ iframe {
 .label-input100 {
  font-family: "Comic Sans MS", "Comic Sans", cursive;
   font-size: 13px;
-  color: #000000
+  color: #000000;
   line-height: 1.5;
   text-transform: uppercase;
 }

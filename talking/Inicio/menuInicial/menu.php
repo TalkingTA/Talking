@@ -40,7 +40,7 @@
               <ul class="dropdown-menu">
                 <li><a href="../../Cadastrar/alunos/alunos.php">Alunos</a></li>
                 <li><a href="../../Cadastrar/disciplinas/disciplinas.php">Disciplinas</a></li>
-                <li><a href="">Docentes</a></li>
+                <li><a href="../../Cadastrar/pessoas/pessoas.php">Pessoas</a></li>
                 <li><a href="../../Cadastrar/turmas/turmas.php">Turmas</a></li>
             
               </ul>
@@ -79,7 +79,8 @@
         <div class="col-sm-3">
           <div class="card" align="center">
             <div class="card-body"><img src="images/icons/docente.ico"></div>
-            <div class="card-body">Docentes</div>
+            <div class="card-body"><a href="../../Cadastrar/pessoas/pessoas.php">Pessoas</div>
+            
           </div>
         </div> 
 

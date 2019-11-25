@@ -57,12 +57,6 @@ $obj->setTabela("turma");
 
 	}
 
-	// PESQUISAR TURMA
-	if(isset($_POST['pesquisarTurma'])){
-		$where = "turma_periodo=" . $_POST['pesquisar'];
-		$dados  = $obj->consultar($where); 
-
-	}
 
 	
 ?>

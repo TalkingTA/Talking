@@ -7,7 +7,11 @@
     require_once '../../php/classes/Funcoes.class.php';
     $obj = new Funcoes();
     $obj->setTabela("turma");
-    $dados = $obj->consultar();
+    $where = '';
+    if(isset($_POST['pesquisarTurma']) && !empty($_POST['pesquisar'])){
+      $where = "turma_periodo='" . $_POST['pesquisar']. "'";
+    }
+    $dados = $obj->consultar($where);
   }
 ?>
 
@@ -76,7 +80,7 @@
     <div class="divPadding">
       <div class="container">
         <div class="col-sm-6 col-md-6">
-          <form class="navbar-form navbar-left" role="search" method="POST" action="../../php/metodos/metodosTurmas.php">
+          <form class="navbar-form navbar-left" role="search" method="POST" action="turmas.php">
             <div class="form-group">
               <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar por período">
             </div>

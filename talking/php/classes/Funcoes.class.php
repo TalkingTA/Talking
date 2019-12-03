@@ -31,7 +31,6 @@ class Funcoes {
     private $disciplinaDescricao;
 
     // PESSOA
-    private $idPessoa;
     private $nomePessoa;
     private $cpfPessoa;
     private $emailPessoa;
@@ -136,20 +135,20 @@ class Funcoes {
             $this->raAluno              = $dados['ra'];
             $this->idadeAluno           = $dados['idade'];
             $this->sexoAluno            = $dados['sexo'];
-            $this->responsavelAluno     = $dados['responsavelAluno'];
             $this->statusAluno          = $dados['statusAluno'];
-            $this->turmaAluno           = $dados['turmaAluno'];
+            $this->responsavelAluno     = $dados['pessoa_id'];
+            $this->turmaAluno           = $dados['turma_id'];
             
 
-            $sql = $this->con->prepare("INSERT INTO aluno (aluno_nome, aluno_ra, aluno_idade, aluno_sexo, aluno_responsavel, status_aluno, turma_id) VALUES (:nomeAluno, :ra, :idade, :sexo :responsavelAluno, :statusAluno, :turmaAluno);");
+            $sql = $this->con->prepare("INSERT INTO aluno (aluno_nome, aluno_ra, aluno_idade, aluno_sexo, aluno_status, pessoa_id, turma_id) VALUES (:nomeAluno, :raAluno, :idadeAluno, :sexoAluno, :statusAluno, :responsavelAluno, :turmaAluno);");
 
             
             $sql->bindParam(":nomeAluno",           $this->nomeAluno, PDO::PARAM_STR);
             $sql->bindParam(":raAluno",             $this->raAluno, PDO::PARAM_STR);
             $sql->bindValue(":idadeAluno",          $this->idadeAluno, PDO::PARAM_STR);
             $sql->bindParam(":sexoAluno",           $this->sexoAluno, PDO::PARAM_STR);
+             $sql->bindParam(":statusAluno",         $this->statusAluno, PDO::PARAM_STR);
             $sql->bindParam(":responsavelAluno",    $this->responsavelAluno, PDO::PARAM_STR);
-            $sql->bindParam(":statusAluno",         $this->statusAluno, PDO::PARAM_STR);
             $sql->bindParam(":turmaAluno",          $this->turmaAluno, PDO::PARAM_STR);
             
            if($sql->execute()){
@@ -188,6 +187,7 @@ class Funcoes {
         // CADASTRO DE PESSOA
     public function cadastrarPessoa($dados){
 
+
         try{
 
             $this->nomePessoa       = $dados['nomePessoa'];
@@ -199,7 +199,7 @@ class Funcoes {
             $this->tipoPessoaPessoa = $dados['tipoPessoaPessoa'];
 
        
-            $sql = $this->con->prepare("INSERT INTO pessoa (pessoa_nome, pessoa_CPF, pessoa_email, pessoa_celular, pessoa_senha, status_pessoa, tipo_id) VALUES (:nomePessoa, :cpfPessoa, :emailPessoa, :celularPessoa, :statusPessoa, :senhaPessoa, :tipoPessoaPessoa);");
+            $sql = $this->con->prepare("INSERT INTO pessoa (pessoa_nome, pessoa_CPF, pessoa_email, pessoa_celular, pessoa_status, pessoa_senha, tipo_id) VALUES (:nomePessoa, :cpfPessoa, :emailPessoa, :celularPessoa, :statusPessoa, :senhaPessoa, :tipoPessoaPessoa);");
 
             // USADO BINDPARAM PARA VINCULAR A VARIÁVEL
             //PDO(PHP Data Objects) É UM MÓDULO DE PHP MONTADO SOB O PARADIGMA OO, COM OBJETIVO DE PATRONIZAR A COMUNICAÇÃO DO PHP COM UM BANCO DE DADOS RELACIONAL

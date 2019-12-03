@@ -113,6 +113,7 @@ font-family: "Comic Sans MS", "Comic Sans", cursive;
   font-size: 16px;
   line-height: 1.5;
   color: #000000;
+  text-align: center;
   
 }
 
@@ -149,7 +150,7 @@ font-family: "Comic Sans MS", "Comic Sans", cursive;
 /* FUNDO BRANCO DO LOGIN  */
 .wrap-login100 {
   width: 500px;
-  height: 400px;
+  height: 420px;
   background: #fff;
   border-radius: 10px;
   

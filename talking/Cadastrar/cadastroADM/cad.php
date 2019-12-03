@@ -6,7 +6,7 @@
     $dados = $obj->consultar();
 ?>
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-br">
 <head>
 	<title>Cadastro de Administrador</title>
 	<meta charset="UTF-8">
@@ -35,15 +35,6 @@
 		$(document).ready(function(){
 			$("#cpf").mask("000.000.000-00")
 			$("#celular").mask("(00) 00000-0000")
-
-			$("#rg").mask("99.999.999-W", {
-				translation: {
-					'W': {
-						pattern: /[X0-9]/
-					}
-				},
-				reverse: true
-			})
 		})
 		
 

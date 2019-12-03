@@ -57,8 +57,8 @@ Create table aluno (
 	aluno_ra Varchar(20) NOT NULL,
 	aluno_idade Int NOT NULL,
 	aluno_sexo Char(1) NOT NULL,
-	aluno_responsavel Varchar(45) NOT NULL,
 	aluno_status Char(1) default 'A',
+	pessoa_id Int NOT NULL,
 	turma_id Int NOT NULL,
  Primary Key (aluno_id)) ENGINE = InnoDB;
 
@@ -76,6 +76,8 @@ Create table pessoa_disciplina (
 Alter table administrador add Foreign  key (tipo_id) references tipo_pessoa (tipo_id);
 
 Alter table pessoa add Foreign  key (tipo_id) references tipo_pessoa (tipo_id);
+
+Alter table aluno add Foreign Key (pessoa_id) references pessoa (pessoa_id);
 
 Alter table aluno add Foreign Key (turma_id) references turma (turma_id);
 

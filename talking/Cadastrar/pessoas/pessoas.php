@@ -5,9 +5,14 @@
   }  
   else {
     require_once '../../php/classes/Funcoes.class.php';
-    $obj = new Funcoes();
+    $obj  = new Funcoes();
+    $obj1 = new Funcoes();
+
     $obj->setTabela("pessoa");
     $dados = $obj->consultar();
+
+    $obj1->setTabela("tipo_pessoa");
+    $dados1 = $obj1->consultar();
   }
 ?>
 
@@ -115,7 +120,7 @@
             <?php $primeiro = false; } ?>
             <input type="hidden" name="pessoa_id" value="<?= $dados[$i]['pessoa_id'] ?>">
             <tr>   
-              <td><?php echo $dados[$i]['pessoa_id']?></td>  
+              <td><?php echo $dados[$i]['pessoa_nome']?></td>  
               <td><?php echo $dados[$i]['pessoa_email']?></td>  
               <td><?php echo $dados[$i]['pessoa_status']?></td>  
               
@@ -144,7 +149,7 @@
                     <p>Nome:      <?php echo $dados[$i]['pessoa_nome']?></p>  
                     <p>CPF:       <?php echo $dados[$i]['pessoa_CPF']?></p>
                     <p>E-mail:    <?php echo $dados[$i]['pessoa_email']?></p>
-                    <p>Celular:   <?php echo $dados[$i]['pessoa_email']?></p>
+                    <p>Celular:   <?php echo $dados[$i]['pessoa_celular']?></p>
                     <p>Status:    <?php echo $dados[$i]['pessoa_status']?></p>
                   </div>
                   <!-- MODAL BUTTONS -->
@@ -266,8 +271,13 @@
                 <option value="I">Inativo</a>
               </select>
 
-              <label class="label-input100">Tipo Pessoa</label>
-              <input type="password" class="input100" name="tipoPessoaPessoa" id="pessoa" placeholder="Digite o tipo de Pessoa">
+              <span class="label-input100">Tipo pessoa</span>
+              <select name="tipoPessoaPessoa" class="form-control" required>
+                <option value="">---</option>
+                  <?php for($i=0;$i<count($dados1);$i++){ ?>
+                <option value="<?php echo $dados1[$i]['tipo_id']; ?>"><?php echo $dados1[$i]['tipo_pessoa'];?></a>
+                <?php } ?>  
+              </select> 
 
               <label class="label-input100">Senha:</label>
               <input type="password" class="input100" name="senhaPessoa" id="senha" placeholder="Digite a senha da Pessoa">

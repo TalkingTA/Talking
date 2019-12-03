@@ -7,7 +7,11 @@
     require_once '../../php/classes/Funcoes.class.php';
     $obj = new Funcoes();
     $obj->setTabela("disciplina");
-    $dados = $obj->consultar();
+    $where = '';
+    if(isset($_POST['pesquisarDisciplina']) && !empty($_POST['pesquisar'])){
+      $where = "disciplina_descricao='" . $_POST['pesquisar']. "'";
+    }
+    $dados = $obj->consultar($where);
   }
 ?>
 
@@ -76,11 +80,11 @@
     <div class="divPadding">
       <div class="container">
         <div class="col-sm-6 col-md-6">
-          <form class="navbar-form navbar-left" role="search" method="GET" action="../../php/metodos/metodosDisciplas.php">
+          <form class="navbar-form navbar-left" role="search" method="POST" action="disciplinas.php">
             <div class="form-group">
-              <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar">
+              <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar por descrição">
             </div>
-            <button type="submit" name="buscarDisciplina" class="btn btn-primary">Buscar</button>
+            <button type="submit" name="pesquisarDisciplina" class="btn btn-primary">Buscar</button>
           </form>
         </div>
         <div class="col-sm-6 col-md-6">

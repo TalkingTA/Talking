@@ -5,15 +5,23 @@
   }  
   else {
     require_once '../../php/classes/Funcoes.class.php';
-    $obj = new Funcoes();
+    $obj  = new Funcoes();
+    $obj1 = new Funcoes();
+    $obj2 = new Funcoes();
+
     $obj->setTabela("aluno");
-    //$obj->setTabela("turma");
     $dados = $obj->consultar();
+
+    $obj1->setTabela("turma");
+    $dados1 = $obj1->consultar();
+
+    $obj2->setTabela("pessoa");
+    $dados2 = $obj2->consultar();
   }
 ?>
 
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-br">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -77,7 +85,7 @@
     <div class="divPadding">
       <div class="container">
         <div class="col-sm-6 col-md-6">
-          <form class="navbar-form navbar-left" role="search" method="GET" action="../../php/metodos/metodos.php">
+          <form class="navbar-form navbar-left" role="search" method="GET" action="../../php/metodos/metodosAlunos.php">
             <div class="form-group">
               <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar">
             </div>
@@ -96,7 +104,7 @@
 
     <!-- COMEÇO DO CRUD -->
     <?php for($i=0;$i<count($dados);$i++){ ?>
-    <form method="POST" action="../../php/metodos/metodos.php">
+    <form method="POST" action="../../php/metodos/metodosAlunos.php">
       <div class="container">
         <table class="table table-borderless">
           <thead>
@@ -113,7 +121,7 @@
             <tr>   
               <td><?php echo $dados[$i]['aluno_nome']?></td>  
               <td><?php echo $dados[$i]['aluno_ra']?></td>  
-              <td><?php echo $dados[$i]['aluno_responsavel']?></td> 
+              <td><?php echo $dados[$i]['pessoa_id']?></td> 
               <td><?php echo $dados[$i]['turma_id']?></td>  
                
 
@@ -143,7 +151,7 @@
                     <p>RA:            <?php echo $dados[$i]['aluno_ra']?></p>  
                     <p>Idade:         <?php echo $dados[$i]['aluno_idade']?></p>  
                     <p>Sexo:          <?php echo $dados[$i]['aluno_sexo']?></p>  
-                    <p>Responsável:   <?php echo $dados[$i]['aluno_responsavel']?></p> 
+                    <p>Responsável:   <?php echo $dados[$i]['pessoa_id']?></p> 
                     <p>Turma:         <?php echo $dados[$i]['turma_id']?></p>  
                     <p>Status:        <?php echo $dados[$i]['aluno_status']?></p> 
                     
@@ -181,7 +189,7 @@
                     <input class="input100" type="text" name="sexo" value="<?= $dados[$i]['aluno_sexo']  ?>">
 
                     <span class="label-input100">Responsável</span>
-                    <input class="input100" type="text" name="responsavelAluno" value="<?= $dados[$i]['aluno_responsavel']  ?>">
+                    <input class="input100" type="text" name="responsavelAluno" value="<?= $dados[$i]['pessoa_id']  ?>">
 
                     <span class="label-input100">Turma</span>
                     <input class="input100" type="text" name="turma" value="<?= $dados[$i]['turma_id']  ?>">
@@ -237,7 +245,7 @@
           document.getElementById('raAluno').value="";
           document.getElementById('idadeAluno').value="";
           document.getElementById('sexoAluno').value="";
-          document.getElementById('nomeResponsavel').value="";
+          document.getElementById('responsavelAluno').value="";
           document.getElementById('turmaAluno').value="";
           document.getElementById('statusAluno').value="";
           
@@ -247,9 +255,9 @@
    
 
     <!-- MOLDAL COMEÇO -->
-    <form method="POST" action="../../php/metodos/metodos.php">
+    <form method="POST" action="../../php/metodos/metodosAlunos.php">
       <!-- MOLDAL CADASTRAR ALUNOS -->
-      <div class="modal fade bd-example-modal-lg" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal fade" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <!-- Modal content-->
           <div class="modal-content">
@@ -272,19 +280,21 @@
                 <option value="F">Feminino</a>
               </select>
 
-              <span class="label-input100">Responsável</span>
-              <input class="input100" type="text" name="responsavelAluno" id="responsavelAluno "placeholder="Digite o nome do responsável do Aluno">
+              <span class="label-input100">Responsável do Aluno</span>
+              <select name="pessoa_id" class="form-control" required>
+                <option value="">---</option>
+                  <?php for($i=0;$i<count($dados2);$i++){ ?>
+                <option value="<?php echo $dados2[$i]['pessoa_id']; ?>"><?php echo $dados2[$i]['pessoa_nome'];?></a>
+                <?php } ?>  
+              </select> 
 
               <span class="label-input100">Turma</span>
-              <input class="input100" type="text" name="turmaAluno" id="turmaAluno" "placeholder="Digite o nome do responsável do Aluno">
-
-              <!-- <span class="label-input100">Turma</span>
-              <select name="turmaAluno" class="form-control" required>
+              <select name="turma_id" class="form-control" required>
                 <option value="">---</option>
-                  <?php for($i=0;$i<count($dados);$i++){ ?>
-                <option value="<?php echo $dados[$i]['turma_id']; ?>"><?php echo $dados[$i]['turma_id'];?></a>
+                  <?php for($i=0;$i<count($dados1);$i++){ ?>
+                <option value="<?php echo $dados1[$i]['turma_id']; ?>"><?php echo $dados1[$i]['turma_id'];?></a>
                 <?php } ?>  
-              </select> -->
+              </select> 
 
               <span class="label-input100">Status</span>
               <select name="statusAluno" id="statusAluno" class="form-control" placeholder="Escolha o status do Aluno" required>
@@ -305,6 +315,7 @@
         </div>
       </div>
     </form>
+
     <!-- MOLDAL FIM-->
 
     <!-- IMPORTANDO O JQUERY-->

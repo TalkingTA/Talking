@@ -2,7 +2,7 @@
 session_start();
 require_once '../classes/Funcoes.class.php';
 $obj = new Funcoes();
-$obj->setTabela("tipo_pessoa");
+$obj->setTabela("aluno");
 
 
 	// LOGANDO 
@@ -79,10 +79,10 @@ $obj->setTabela("tipo_pessoa");
 		}
 		else{
 
-			// echo '<script type="text/javascript">
-			// alert("Aluno não cadastrado!!");
-			// window.location="../../Cadastrar/alunos/alunos.php";
-			// </script>';
+			echo '<script type="text/javascript">
+			alert("Aluno não cadastrado!!");
+			window.location="../../Cadastrar/alunos/alunos.php";
+			</script>';
 
 		}
 

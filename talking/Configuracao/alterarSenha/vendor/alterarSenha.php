@@ -61,8 +61,8 @@
 						</div>
 						<br>
 						<div class="text-center p-t-12">
-							<a class="txt1" href="../../Inicio/menuInicial/menu.php">
-								Voltar ao menu
+							<a class="txt1" href="../../Configuracao/recuperarSenha/recuperarSenha.php">
+								Esqueceu sua senha?
 							</a>
 						</div>
 

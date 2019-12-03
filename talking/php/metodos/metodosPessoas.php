@@ -32,10 +32,10 @@ $obj->setTabela("pessoa");
 			}
 			else{
 
-				// echo '<script type="text/javascript">
-				// alert("Pessoa não cadastrada!!");
-				// window.location="../../Cadastrar/pessoas/pessoas.php";
-				// </script>';
+				echo '<script type="text/javascript">
+				alert("Pessoa não cadastrada!!");
+				window.location="../../Cadastrar/pessoas/pessoas.php";
+				</script>';
 
 			}
 

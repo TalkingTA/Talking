@@ -9,18 +9,18 @@
 	<!-- IMPORTS -->
 
 	<!-- ICONE -->
-	<link rel="icon" type="image/png" href="images/icons/img-01.png"/>
+	<link rel="icon" type="image/png" href="Inicio/login/images/icons/img-01.png"/>
 
 	<!-- FONTS -->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="Inicio/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
 	<!-- BOOTSTRAP-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="Inicio/login/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="Inicio/login/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="Inicio/login/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="Inicio/login/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="Inicio/login/css/util.css">
+	<link rel="stylesheet" type="text/css" href="Inicio/login/css/main.css">
 </head>
 <body>
 	
@@ -29,12 +29,12 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="images/img-01.png" alt="IMG">
+					<img src="Inicio/login/images/img-01.png" alt="IMG">
 				</div>
 
 				
 				<!-- TITULO DO CARD -->
-				<form class="login100-form validate-form" method="POST" action="../../php/metodos/metodos.php">
+				<form class="login100-form validate-form" method="POST" action="php/metodos/metodos.php">
 					<span class="login100-form-title">
 						Talking
 					</span>
@@ -77,14 +77,14 @@
 					
 						<!-- TXT ESQUECEU SENHA -->
 						<div class="text-center p-t-12">
-							<a class="txt1" href="../../Configuracao/recuperarSenha/recuperarSenha.php">
+							<a class="txt1" href="Configuracao/recuperarSenha/recuperarSenha.php">
 								Esqueceu sua senha?
 							</a>
 							<br>
 							<br>
 							<br>
 							<!-- TXT CADASTRAR -->
-							<a class="txt1" href="../../Cadastrar/cadastroADM/cad.php">
+							<a class="txt1" href="Cadastrar/cadastroADM/cad.php">
 								Clique para se cadastrar
 								<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 							</a>

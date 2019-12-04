@@ -73,20 +73,22 @@ class Funcoes {
 			// BUSCANDO SE EXISTE O EMAIL E SENHA DO USUARIO CASO EXISTE VAI RETORNAR SUCESSO
 			$sql = $this->con->prepare("SELECT 'sucesso' as sucesso, administrador_id FROM administrador WHERE administrador_email = :email AND administrador_senha = :senha;");
 			
-			$sql->bindParam(":email", $this->emailAdministrador, PDO::PARAM_STR);
-			$sql->bindParam(":senha", md5($this->senhaAdministrador), PDO::PARAM_STR);
+			$sql->bindValue(":email", $this->emailAdministrador, PDO::PARAM_STR);
+			$sql->bindValue(":senha", md5($this->senhaAdministrador), PDO::PARAM_STR);
 			$sql->execute();
 			$reg = $sql->fetch(PDO::FETCH_ASSOC);
 
 			if($reg['sucesso'] == 'sucesso'){
 				// SE REGISTRO FOR ENCONTRADO RETORNA SUCESSO E O USUARIO PODE ACESSAR
 				return "ok";
-			}
+            }else{
+                return 'erro';
+            }
 
-		}
-			catch(PDOException $ex){
-			return 'error '.$ex->getMessage();
-		}
+        }
+        catch(PDOException $ex){
+            return 'error '.$ex->getMessage();
+        }
 	}
 
     // CADASTRO DE ADMINISTRADOR
@@ -258,15 +260,15 @@ class Funcoes {
         $to    = $_REQUEST['emailAdministrador'];
 
         $origem = "TalkingTA@hotmail.com";
-        $msg    ="Seja bem vindo a TalkingTA!";
+        $msg    ="Seja bem vindo ao Talking!";
         //$header = "MIME-Version: 1.0";
         $header = "Content-type: text/html; charset='iso-8859-1'";
         $header = "From: $origem Replay-to: $to";
+        $body     = "Para acessar o aplicativo utilize o e-mail e senha cadastrado no site";
+        $header   = "Seu cadastro foi realizado com sucesso!\n";
+       
 
-        $header = "Olá $nome \n";
-        $header   ="Seu cadastro foi realizado com sucesso!";
-
-        mail($to, $msg, $header);
+        mail($to, $msg, $body, $header);
         
     }
 

@@ -6,7 +6,7 @@ Create table administrador (
 	administrador_email Varchar(40) NOT NULL UNIQUE,
 	administrador_celular Varchar(15) NOT NULL,
 	administrador_status Char(1) default 'A',
-	administrador_senha Varchar(250) NOT NULL,
+	administrador_senha Varchar(300) NOT NULL,
 	tipo_id Int NOT NULL,
 
  Primary Key (administrador_id)) ENGINE = InnoDB;

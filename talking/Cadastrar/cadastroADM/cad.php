@@ -117,7 +117,7 @@
 				<div class="contact100-form validate-form">
 					<span class="contact100-form-title">
 					
-						<a class="a" href="../../Inicio/login/index.php">
+						<a class="a" href="../../index.php">
 							Possui uma conta?
 	
 						</a>

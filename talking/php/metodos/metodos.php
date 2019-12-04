@@ -24,7 +24,7 @@ $obj->setTabela("aluno");
 		else{
 			// DANDO UM UNSET NAS VARIAVEIS CASO O USUARIO NÃO TENHA CONTA PARA LIMPAR AS INFORMAÇÕES DA MEMORIA DO SERVIDOR
 			
-  			$_SESSION['msg'] = " <p class='alert alert-danger'>Login ou senha incorreto!</p>";
+  			$_SESSION['msg'] = " <p aling='center' class='alert alert-danger'>Login ou senha incorreto!</p>";
 			header('location:../../Inicio/login/index.php');
 
 
@@ -38,12 +38,22 @@ $obj->setTabela("aluno");
 
 		$senha  		= $_POST['senhaAdministrador'];
 		$senhaConfirma  = $_POST['confirmarSenha'];
+		// FUNÇÃO SRTLEN USADA PARA SABER A QUANTIDADE DE CARACTERES DENTRO DA VARIAVEL
+		$teste1 = strlen($senha);
+		$teste2 = strlen($senhaConfirma);
 
+		// VERIFICANDO SE ESTÃO DIFERENTES
 		if($senha <> $senhaConfirma){
 
-			$_SESSION['msg'] = " <p class='alert alert-danger'>As senhas não coincidente!</p>";
+			$_SESSION['msg'] = " <p aling='center' class='alert alert-danger'>As senhas não coincidente!</p>";
 			header('location:../../Cadastrar/cadastroADM/cad.php');
 
+		}
+		// VERIFICANDO SE É MAIOR QUE 8 OS DIGITOS DA SENHA
+		elseif($teste1 <8 and $teste2 <8){
+
+			$_SESSION['msg'] = " <p aling='center' class='alert alert-danger'>As senhas deve ter no minimo 8 caracteres!</p>";
+			header('location:../../Cadastrar/cadastroADM/cad.php');
 		}
 		else{
 
@@ -51,7 +61,10 @@ $obj->setTabela("aluno");
 
 				$obj->enviarEmail($_REQUEST);
 
-				header('location:../../Inicio/login/index.php');
+				echo '<script type="text/javascript">
+				alert("Administrador cadastrado com sucesso!!!");
+				window.location="../../index.php";
+				</script>';
 			}
 			else {
 
@@ -66,59 +79,6 @@ $obj->setTabela("aluno");
 
 	}
 	
-	// CADASTRAR ALUNO
-	if($_POST['operacao'] == "cadAluno"){
-
-		if($obj->cadastrarAluno($_POST) == 'ok'){
-
-			echo '<script type="text/javascript">
-			alert("Aluno cadastrado com sucesso!!");
-			window.location="../../Cadastrar/alunos/alunos.php";
-			</script>';
-			
-		}
-		else{
-
-			echo '<script type="text/javascript">
-			alert("Aluno não cadastrado!!");
-			window.location="../../Cadastrar/alunos/alunos.php";
-			</script>';
-
-		}
-
-	}
-
-	// ALTERAR ALUNO
-	if(isset($_POST['alterar'])){
-		$acao = null;
-		$dados = array();
-		$where = "id_aluno=" . $_POST['id_aluno'];	 
-		$dados["nome_aluno"]     		=  	"'" . $_POST['nomeAluno'] . "'";
-		$dados["ra_aluno"]        		=  	"'" . $_POST['ra'] . "'";
-		$dados["responsavel_aluno"] 	=  	"'" . $_POST['responsavel_aluno'] . "'";
-		$dados["serie_aluno"]       	=  	"'" . $_POST['serie'] . "'";
-		$dados["turma_aluno"]      		=  	"'" . $_POST['turma'] . "'";
-		$obj->alterar($where,$dados);
-
-		echo '<script type="text/javascript">
-		alert("Aluno alterado com sucesso!");
-		window.location="../../Cadastrar/alunos/alunos.php";	
-		</script>';
-		
-	}
-	
-	// EXCLUIR ALUNO
-	if(isset($_POST['excluir'])){
-		$where = "id_aluno=" . $_POST['id_aluno'];
-		$dados  = $obj->excluir($where); 
-
-		echo '<script type="text/javascript">
-		alert("Aluno excluido com sucesso!");
-		window.location="../../Cadastrar/alunos/alunos.php";	
-		</script>';
-			
-
-	}
 
 	if(isset($_POST['enviarSenha'])){
 

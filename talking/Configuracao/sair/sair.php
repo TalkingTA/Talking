@@ -4,6 +4,6 @@
 	session_destroy();
 	unset($_SESSION['email']);
 	unset($_SESSION['senha']);
-	header('location:../../Inicio/login/index.php');
+	header('location:../../index.php');
 
 ?>

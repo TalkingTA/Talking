@@ -33,9 +33,11 @@ $obj->setTabela("aluno");
 		$acao = null;
 		$dados = array();
 		$where = "aluno_id=" . $_POST['aluno_id'];	 
-		$dados["nome_aluno"]     		=  	"'" . $_POST['nomeAluno'] . "'";
-		$dados["ra_aluno"]        		=  	"'" . $_POST['ra'] . "'";
-		$dados["serie_aluno"]       	=  	"'" . $_POST['serie'] . "'";
+		$dados["aluno_nome"]     	=  	"'" . $_POST['nomeAluno'] . "'";
+		$dados["aluno_ra"]        	=  	"'" . $_POST['ra'] . "'";
+		$dados["aluno_idade"]       =  	"'" . $_POST['idade'] . "'";
+		$dados["aluno_sexo"]       	=  	"'" . $_POST['sexo'] . "'";
+		$dados["status"]       		=  	"'" . $_POST['status'] . "'";
 		$obj->alterar($where,$dados);
 
 		echo '<script type="text/javascript">

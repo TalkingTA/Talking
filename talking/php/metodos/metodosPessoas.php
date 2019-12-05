@@ -13,17 +13,26 @@ $obj->setTabela("pessoa");
 		$senha  		= $_POST['senhaPessoa'];
 		$senhaConfirma  = $_POST['confirmarSenha'];
 
+		$teste1 = strlen($senha);
+		$teste2 = strlen($senhaConfirma);
+
 		if($senha <> $senhaConfirma){
 
 			$_SESSION['msg'] = " <p class='alert alert-danger'>As senhas não coincidente!</p>";
 			header('location:../../Cadastrar/pessoas/pessoas.php');
 
 		}
+		elseif($teste1 <8 and $teste2 <8){
+
+			$_SESSION['msg'] = " <p aling='center' class='alert alert-danger'>As senhas deve ter no minimo 8 caracteres!</p>";
+			header('location:../../Cadastrar/pessoas/pessoas.php');
+		}
 
 		else{
 
 			if($obj->cadastrarPessoa($_POST) == 'ok'){
 
+				//$obj->enviarEmailPessoa($_REQUEST);
 				echo '<script type="text/javascript">
 				alert("Pessoa cadastrada com sucesso!!");
 				window.location="../../Cadastrar/pessoas/pessoas.php";
@@ -74,12 +83,6 @@ $obj->setTabela("pessoa");
 
 	}
 
-	// PESQUISAR PESSOA
-	if(isset($_POST['pesquisarPessoa'])){
-		$where = "pessoa_nome=" . $_POST['pesquisar'];
-		$dados  = $obj->consultar($where); 
-
-	}
 
 	
 ?>

@@ -70,7 +70,11 @@ Create table pessoa_disciplina (
 	disciplina_id Int NOT NULL,
  Primary Key (pessoa_disciplina_id)) ENGINE = InnoDB;
 
-
+Create table usuarios (
+	usuario_id Int NOT NULL AUTO_INCREMENT,
+	usuario_email Varchar(40) NOT NULL UNIQUE,
+	usuario_senha Varchar(300) NOT NULL,
+ Primary Key (usuario_id)) ENGINE = InnoDB;
 
 
 Alter table administrador add Foreign  key (tipo_id) references tipo_pessoa (tipo_id);

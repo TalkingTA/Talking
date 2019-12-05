@@ -16,7 +16,7 @@ header('Content-Type: text/html; charset=utf8');
     $senha = "'".$senha."'";
     	
 
-    $sql = "SELECT * FROM administrador WHERE administrador_email = $login AND administrador_senha = $senha";
+    $sql = "SELECT * FROM usuarios WHERE usuario_email = $login AND usuario_senha = $senha";
     
     $result = $con->query($sql)->fetchAll();
     if (count($result) > 0) {
@@ -24,9 +24,9 @@ header('Content-Type: text/html; charset=utf8');
         file_put_contents("Rastrear", " 4 ", FILE_APPEND);
         $response["linhas"] = count($result);
         $response["erro"]   = false;
-        $response["login"]  = $registro['administrador_email'];
-        $response["senha"]  = $registro['administrador_senha'];
-        $response["perfil"] = $registro['tipo_id'];
+        $response["login"]  = $registro['usuario_email'];
+        $response["senha"]  = $registro['usuario_senha'];
+
       }
 
     }else{

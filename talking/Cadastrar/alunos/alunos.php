@@ -9,14 +9,18 @@
     $obj1 = new Funcoes();
     $obj2 = new Funcoes();
 
-    $obj->setTabela("aluno");
-    $dados = $obj->consultar();
-
     $obj1->setTabela("turma");
     $dados1 = $obj1->consultar();
 
     $obj2->setTabela("pessoa");
     $dados2 = $obj2->consultar();
+
+    $obj->setTabela("aluno");
+    $where = '';
+    if(isset($_POST['pesquisarAluno']) && !empty($_POST['pesquisar'])){
+      $where = "aluno_nome='" . $_POST['pesquisar']. "'";
+    }
+    $dados = $obj->consultar($where);
   }
 ?>
 
@@ -85,11 +89,11 @@
     <div class="divPadding">
       <div class="container">
         <div class="col-sm-6 col-md-6">
-          <form class="navbar-form navbar-left" role="search" method="GET" action="../../php/metodos/metodosAlunos.php">
+          <form class="navbar-form navbar-left" role="search" method="POST" action="alunos.php">
             <div class="form-group">
-              <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar">
+              <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar por nome">
             </div>
-            <button type="submit" name="buscarAluno" class="btn btn-primary">Buscar</button>
+            <button type="submit" name="pesquisarAluno" class="btn btn-primary">Buscar</button>
           </form>
         </div>
         <div class="col-sm-6 col-md-6">
@@ -109,11 +113,11 @@
         <table class="table table-borderless">
           <thead>
             <tr>
-              <th class="col-sm-2">Nome</th>
-              <th class="col-sm-2">RA</th>
-              <th class="col-sm-2">Responsável</th>
-              <th class="col-sm-2">Turma</th>
-              <th class="col-sm-2">Ações</th>
+              <th class="thAlinhada">Nome</th>
+              <th class="thAlinhada">RA</th>
+              <th class="thAlinhada">Responsável</th>
+              <th class="thAlinhada">Turma</th>
+              <th class="thAlinhada">Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -188,14 +192,13 @@
                     <span class="label-input100">Sexo</span>
                     <input class="input100" type="text" name="sexo" value="<?= $dados[$i]['aluno_sexo']  ?>">
 
-                    <span class="label-input100">Responsável</span>
-                    <input class="input100" type="text" name="responsavelAluno" value="<?= $dados[$i]['pessoa_id']  ?>">
-
-                    <span class="label-input100">Turma</span>
-                    <input class="input100" type="text" name="turma" value="<?= $dados[$i]['turma_id']  ?>">
+                   
 
                     <span class="label-input100">Status</span>
-                    <input class="input100" type="text" name="status" value="<?= $dados[$i]['aluno_status']  ?>">
+                    <select name="status" id="statusAluno" class="form-control" placeholder="Escolha o status do Aluno" required>
+                      <option value="A">Ativo</a>  
+                      <option value="I">Inativo</a>
+                    </select>
 
                     
                   </div>

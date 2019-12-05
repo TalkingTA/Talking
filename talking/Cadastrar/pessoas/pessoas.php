@@ -8,11 +8,15 @@
     $obj  = new Funcoes();
     $obj1 = new Funcoes();
 
-    $obj->setTabela("pessoa");
-    $dados = $obj->consultar();
-
     $obj1->setTabela("tipo_pessoa");
     $dados1 = $obj1->consultar();
+
+    $obj->setTabela("pessoa");
+    $where = '';
+    if(isset($_POST['pesquisarPessoa']) && !empty($_POST['pesquisar'])){
+      $where = "pessoa_nome='" . $_POST['pesquisar']. "'";
+    }
+    $dados = $obj->consultar($where);
   }
 ?>
 
@@ -81,11 +85,11 @@
     <div class="divPadding">
       <div class="container">
         <div class="col-sm-6 col-md-6">
-          <form class="navbar-form navbar-left" role="search" method="GET" action="../../php/metodos/metodosPessoas.php">
+          <form class="navbar-form navbar-left" role="search" method="POST" action="pessoas.php">
             <div class="form-group">
-              <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar">
+              <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar por nome">
             </div>
-            <button type="submit" name="buscarPessoa" class="btn btn-primary">Buscar</button>
+            <button type="submit" name="pesquisarPessoa" class="btn btn-primary">Buscar</button>
           </form>
         </div>
         <div class="col-sm-6 col-md-6">
@@ -187,8 +191,6 @@
                     <label class="label-input100">Status:</label>
                     <input type="text" class="input100" name="descricao" value="<?= $dados[$i]['pessoa_status']  ?>"> 
 
-                    <label class="label-input100">Senha:</label>
-                    <input type="text" class="input100" name="descricao" value="<?= $dados[$i]['pessoa_senha']  ?>"> 
                     
                   </div>
                   <!-- MODAL BUTTONS -->

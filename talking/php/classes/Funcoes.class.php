@@ -106,6 +106,8 @@ class Funcoes {
        
         	$sql = $this->con->prepare("INSERT INTO administrador (administrador_nome, administrador_CPF, administrador_email, administrador_celular, administrador_senha, tipo_id) VALUES (:nomeAdministrador, :cpfAdministrador, :emailAdministrador, :celularAdministrador, :senhaAdministrador, :tipoPessoa);");
 
+            $sql1 = $this->con->prepare("INSERT INTO usuarios (usuario_email, usuario_senha) VALUES (:emailAdministrador, :senhaAdministrador);");
+
 			// USADO BINDPARAM PARA VINCULAR A VARIÁVEL
 			//PDO(PHP Data Objects) É UM MÓDULO DE PHP MONTADO SOB O PARADIGMA OO, COM OBJETIVO DE PATRONIZAR A COMUNICAÇÃO DO PHP COM UM BANCO DE DADOS RELACIONAL
 			
@@ -115,14 +117,18 @@ class Funcoes {
             $sql->bindParam(":celularAdministrador",$this->celularAdministrador, PDO::PARAM_STR);
             $sql->bindParam(":senhaAdministrador", 	$this->senhaAdministrador, PDO::PARAM_STR);
             $sql->bindParam(":tipoPessoa",          $this->tipoPessoa, PDO::PARAM_STR);
+
+            $sql1->bindParam(":emailAdministrador",     $this->emailAdministrador, PDO::PARAM_STR);
+            $sql1->bindParam(":senhaAdministrador",  $this->senhaAdministrador, PDO::PARAM_STR);
             
             
             
-            if($sql->execute()){
+            if($sql->execute() and $sql1->execute()) {
                 return 'ok';
             }else{
                 return 'erro';
             }
+            
         } catch (PDOException $ex) {
             return 'error '.$ex->getMessage();
         }
@@ -203,6 +209,9 @@ class Funcoes {
        
             $sql = $this->con->prepare("INSERT INTO pessoa (pessoa_nome, pessoa_CPF, pessoa_email, pessoa_celular, pessoa_status, pessoa_senha, tipo_id) VALUES (:nomePessoa, :cpfPessoa, :emailPessoa, :celularPessoa, :statusPessoa, :senhaPessoa, :tipoPessoaPessoa);");
 
+            $sql1 = $this->con->prepare("INSERT INTO usuarios (usuario_email, usuario_senha) VALUES (:emailPessoa, :senhaPessoa);");
+
+
             // USADO BINDPARAM PARA VINCULAR A VARIÁVEL
             //PDO(PHP Data Objects) É UM MÓDULO DE PHP MONTADO SOB O PARADIGMA OO, COM OBJETIVO DE PATRONIZAR A COMUNICAÇÃO DO PHP COM UM BANCO DE DADOS RELACIONAL
             
@@ -213,10 +222,14 @@ class Funcoes {
             $sql->bindParam(":statusPessoa",        $this->statusPessoa, PDO::PARAM_STR);
             $sql->bindParam(":senhaPessoa",         $this->senhaPessoa, PDO::PARAM_STR);
             $sql->bindParam(":tipoPessoaPessoa",    $this->tipoPessoaPessoa, PDO::PARAM_STR);
+
+
+            $sql1->bindParam(":emailPessoa",         $this->emailPessoa, PDO::PARAM_STR);
+            $sql1->bindParam(":senhaPessoa",         $this->senhaPessoa, PDO::PARAM_STR);
             
             
             
-            if($sql->execute()){
+            if($sql->execute() and $sql1->execute()){
                 return 'ok';
             }else{
                 return 'erro';
@@ -266,6 +279,28 @@ class Funcoes {
         $header = "From: $origem Replay-to: $to";
         $body     = "Para acessar o aplicativo utilize o e-mail e senha cadastrado no site";
         $header   = "Seu cadastro foi realizado com sucesso!\n";
+       
+
+        mail($to, $msg, $body, $header);
+        
+    }
+
+    // ENVIAR EMAIL APOS O ADMINISTRADOR CADASTRAR UM USUARIO
+    public function enviarEmailPessoa($dados){
+
+        $nome     = $_REQUEST['nomePessoa'];
+        $to       = $_REQUEST['emailPessoa'];
+        $senha    = $_REQUEST['senhaPessoa'];
+
+
+        $origem = "TalkingTA@hotmail.com";
+        $msg    ="Seja bem vindo ao Talking!";
+        //$header = "MIME-Version: 1.0";
+        $header = "Content-type: text/html; charset='iso-8859-1'";
+        $header = "From: $origem Replay-to: $to";
+        $body   = "Para acessar o aplicativo utilize o e-mail " .$to;
+        $body   =  "e senha " .$senha;
+        $header   = "Seu cadastro foi liberado!\n";
        
 
         mail($to, $msg, $body, $header);

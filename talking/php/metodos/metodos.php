@@ -59,7 +59,7 @@ $obj->setTabela("aluno");
 
 			if($obj->cadastrarAdministrador($_POST) == 'ok'){
 
-				$obj->enviarEmail($_REQUEST);
+				//$obj->enviarEmail($_REQUEST);
 
 				echo '<script type="text/javascript">
 				alert("Administrador cadastrado com sucesso!!!");

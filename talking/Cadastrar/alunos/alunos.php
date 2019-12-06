@@ -107,7 +107,10 @@
     <br>
 
     <!-- COMEÇO DO CRUD -->
-    <?php for($i=0;$i<count($dados);$i++){ ?>
+    <?php 
+    $primeiro = true;
+      for($i=0;$i<count($dados);$i++){ ?>
+    <?php if($primeiro){ ?>
     <form method="POST" action="../../php/metodos/metodosAlunos.php">
       <div class="container">
         <table class="table table-borderless">
@@ -115,17 +118,16 @@
             <tr>
               <th class="thAlinhada">Nome</th>
               <th class="thAlinhada">RA</th>
-              <th class="thAlinhada">Responsável</th>
               <th class="thAlinhada">Turma</th>
               <th class="thAlinhada">Ações</th>
             </tr>
           </thead>
           <tbody>
+            <?php $primeiro = false; } ?>
             <input type="hidden" name="aluno_id" value="<?= $dados[$i]['aluno_id'] ?>">
             <tr>   
               <td><?php echo $dados[$i]['aluno_nome']?></td>  
               <td><?php echo $dados[$i]['aluno_ra']?></td>  
-              <td><?php echo $dados[$i]['pessoa_id']?></td> 
               <td><?php echo $dados[$i]['turma_id']?></td>  
                
 
@@ -181,21 +183,22 @@
                   <div class="modal-body">
 
                     <span class="label-input100">Nome completo</span>
-                    <input class="input100" type="text" name="nomeAluno" value="<?= $dados[$i]['aluno_nome']  ?>">
+                    <input class="input100" type="text" name="nomeAluno" value="<?= $dados[$i]['aluno_nome']?>">
 
                     <span class="label-input100">RA</span>
-                    <input class="input100" type="text" name="ra" value="<?= $dados[$i]['aluno_ra']  ?>">
+                    <input class="input100" type="text" name="ra" value="<?= $dados[$i]['aluno_ra']?>">
 
                     <span class="label-input100">Idade</span>
-                    <input class="input100" type="text" name="idade" value="<?= $dados[$i]['aluno_idade']  ?>">
+                    <input class="input100" type="number" min="0" oninput="this.value = Math.abs(this.value)" name="idade" value="<?= $dados[$i]['aluno_idade']?>">
 
                     <span class="label-input100">Sexo</span>
-                    <input class="input100" type="text" name="sexo" value="<?= $dados[$i]['aluno_sexo']  ?>">
-
-                   
+                    <select name="sexo" class="input100">
+                      <option value="M">Masculino</a>  
+                      <option value="F">Feminino</a>
+                    </select>
 
                     <span class="label-input100">Status</span>
-                    <select name="status" id="statusAluno" class="form-control" placeholder="Escolha o status do Aluno" required>
+                    <select name="status" class="input100">
                       <option value="A">Ativo</a>  
                       <option value="I">Inativo</a>
                     </select>
@@ -204,7 +207,7 @@
                   </div>
                   <!-- MODAL BUTTONS -->
                   <div class="modal-footer">
-                    <button type="submit" name="alterar" class="btn btn-warning">Salvar Alterações</button>
+                    <button type="submit" name="alterarAluno" class="btn btn-warning">Salvar Alterações</button>
                     <button type="button" name="" class="btn btn-primary" data-dismiss="modal">Fechar</button>
                   </div>
                 </div>
@@ -234,6 +237,8 @@
                 </div>
               </div>
             </div>
+            <?php }
+            if(!$primeiro) { ?> 
           </tbody>
         </table>
       </div>
@@ -268,23 +273,23 @@
             <div class="modal-body">
                     
               <span class="label-input100">Nome completo</span>
-              <input class="input100" type="text" name="nomeAluno" id="nomeAluno "placeholder="Digite o nome do Aluno" required>
+              <input class="input100" type="text" name="nomeAluno" id="nomeAluno" placeholder="Digite o nome do Aluno" required>
 
               <span class="label-input100">RA</span>
-              <input class="input100" type="text" name="ra" id="raAluno "placeholder="Digite o ra do Aluno" required>
+              <input class="input100" type="text" name="ra" id="raAluno" placeholder="Digite o ra do Aluno" required>
 
               <span class="label-input100">Idade</span>
-              <input class="input100" type="number" name="idade" id="idadeAluno "placeholder="Digite a idade do Aluno">
+              <input class="input100" type="number" name="idade" id="idadeAluno" min="0" oninput="this.value = Math.abs(this.value)" placeholder="Digite a idade do Aluno">
 
               <span class="label-input100">Sexo</span>
-              <select name="sexo" id="sexoAluno" class="form-control" placeholder="Escolha o sexo do Aluno" required>
+              <select name="sexo" id="sexoAluno" class="input100" placeholder="Escolha o sexo do Aluno" required>
                 <option value="">---</option>
                 <option value="M">Masculino</a>  
                 <option value="F">Feminino</a>
               </select>
 
               <span class="label-input100">Responsável do Aluno</span>
-              <select name="pessoa_id" class="form-control" required>
+              <select name="pessoa_id" class="input100" required>
                 <option value="">---</option>
                   <?php for($i=0;$i<count($dados2);$i++){ ?>
                 <option value="<?php echo $dados2[$i]['pessoa_id']; ?>"><?php echo $dados2[$i]['pessoa_nome'];?></a>
@@ -292,7 +297,7 @@
               </select> 
 
               <span class="label-input100">Turma</span>
-              <select name="turma_id" class="form-control" required>
+              <select name="turma_id" class="input100" required>
                 <option value="">---</option>
                   <?php for($i=0;$i<count($dados1);$i++){ ?>
                 <option value="<?php echo $dados1[$i]['turma_id']; ?>"><?php echo $dados1[$i]['turma_id'];?></a>
@@ -300,7 +305,7 @@
               </select> 
 
               <span class="label-input100">Status</span>
-              <select name="statusAluno" id="statusAluno" class="form-control" placeholder="Escolha o status do Aluno" required>
+              <select name="statusAluno" id="statusAluno" class="input100" placeholder="Escolha o status do Aluno" required>
                 <option value="">---</option>
                 <option value="A">Ativo</a>  
                 <option value="I">Inativo</a>
@@ -309,7 +314,6 @@
             </div>
             <div class="modal-footer">
               <!-- BOTÃO CADASTRAR-->
-              <input type="hidden" name="operacao" value="cadAluno">
               <button type="submit" name="cadAluno" class="btn btn-primary" data-dismiss="">Cadastrar</button>
               <!-- BOTÃO LIMPAR-->
               <input type="button" class="btn btn-default" value="Limpar campos" onClick="limpa()">

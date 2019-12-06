@@ -35,6 +35,11 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
+    <!-- IMPORTANDO JQUERY PARA UTILIZAR AS MASCARA-->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mask.min.js"></script>
+
   </head>
  <body>
 
@@ -177,20 +182,22 @@
                   <div class="modal-body">
                    
                     <label class="label-input100">Nome:</label>
-                    <input type="text" class="input100" name="descricao" value="<?= $dados[$i]['pessoa_nome']  ?>"> 
+                    <input type="text" class="input100" name="nomePessoa" value="<?= $dados[$i]['pessoa_nome']  ?>"> 
 
                     <label class="label-input100">CPF:</label>
-                    <input type="text" class="input100" name="descricao" value="<?= $dados[$i]['pessoa_CPF']  ?>"> 
+                    <input type="number" class="input100" name="cpfPessoa" value="<?= $dados[$i]['pessoa_CPF']  ?>"> 
 
                     <label class="label-input100">E-mail:</label>
-                    <input type="text" class="input100" name="descricao" value="<?= $dados[$i]['pessoa_email']  ?>"> 
+                    <input type="text" class="input100" name="emailPessoa" value="<?= $dados[$i]['pessoa_email']  ?>"> 
 
                     <label class="label-input100">Celular:</label>
-                    <input type="text" class="input100" name="descricao" value="<?= $dados[$i]['pessoa_celular']  ?>"> 
+                    <input type="text" class="input100" name="celularPessoa" value="<?= $dados[$i]['pessoa_celular']  ?>"> 
 
-                    <label class="label-input100">Status:</label>
-                    <input type="text" class="input100" name="descricao" value="<?= $dados[$i]['pessoa_status']  ?>"> 
-
+                    <span class="label-input100">Status</span>
+                    <select name="status" class="input100">
+                      <option value="A">Ativo</a>  
+                      <option value="I">Inativo</a>
+                    </select>
                     
                   </div>
                   <!-- MODAL BUTTONS -->
@@ -237,8 +244,13 @@
     <!-- FUNÇÃO PARA LIMPAR OS CAMPOS -->
     <script>
       function limpa() {
-       if(document.getElementById('disciplinaDescricao').value!=""){
-          document.getElementById('disciplinaDescricao').value="";
+       if(document.getElementById('nome').value!=""){
+          document.getElementById('nome').value="";
+          document.getElementById('cpf').value="";
+          document.getElementById('email').value="";
+          document.getElementById('celular').value="";
+          document.getElementById('senha').value="";
+          document.getElementById('confirmarSenha').value="";
           
         }  
       }
@@ -258,23 +270,23 @@
               <input type="text" class="input100" name="nomePessoa" id="nome" placeholder="Digite o nome da Pessoa">
 
               <label class="label-input100">CPF:</label>
-              <input type="number" class="input100" name="cpfPessoa" id="cpf" placeholder="Digite o CPF da Pessoa">
+              <input type="text" class="input100" name="cpfPessoa" id="cpf" placeholder="Digite o CPF da Pessoa">
 
               <label class="label-input100">E-mail:</label>
               <input type="text" class="input100" name="emailPessoa" id="email" placeholder="Digite o e-mail da Pessoa">
 
               <label class="label-input100">Celular:</label>
-              <input type="numbertext" class="input100" name="celularPessoa" id="celular" placeholder="Digite o celular da Pessoa">
+              <input type="text" class="input100" name="celularPessoa" id="celular" placeholder="Digite o celular da Pessoa">
 
               <span class="label-input100">Status</span>
-              <select name="statusPessoa" id="status" class="form-control" placeholder="Escolha o status do Aluno" required>
+              <select name="statusPessoa" id="status" class="input100" placeholder="Escolha o status do Aluno" required>
                 <option value="">---</option>
                 <option value="A">Ativo</a>  
                 <option value="I">Inativo</a>
               </select>
 
               <span class="label-input100">Tipo pessoa</span>
-              <select name="tipoPessoaPessoa" class="form-control" required>
+              <select name="tipoPessoaPessoa" class="input100" required>
                 <option value="">---</option>
                   <?php for($i=0;$i<count($dados1);$i++){ ?>
                 <option value="<?php echo $dados1[$i]['tipo_id']; ?>"><?php echo $dados1[$i]['tipo_pessoa'];?></a>
@@ -307,6 +319,15 @@
       </div>
     </form>
     <!-- MOLDAL FIM-->
+
+    <!-- CRIANDO AS MASCARA -->
+    <script type="text/javascript">
+      //SÓ VAI INSERIR QUANDO O FORMULARIO FOR CARREGADO
+      $("#cpf").mask("000.000.000-00")
+      $("#celular").mask("(00) 00000-0000")
+    
+    </script>
+
 
 
     <!-- IMPORTANDO O JQUERY-->

@@ -298,8 +298,7 @@ class Funcoes {
         //$header = "MIME-Version: 1.0";
         $header = "Content-type: text/html; charset='iso-8859-1'";
         $header = "From: $origem Replay-to: $to";
-        $body   = "Para acessar o aplicativo utilize o e-mail " .$to;
-        $body   =  "e senha " .$senha;
+        $body   = "Para acessar o aplicativo utilize o e-mail " .$to. " e a senha".$senha;
         $header   = "Seu cadastro foi liberado!\n";
        
 
@@ -343,39 +342,39 @@ class Funcoes {
         
     }
 
-    public function alterarSenha($dados){
+    // public function alterarSenha($dados){
 
-        try{
+    //     try{
 
-            $this->novaSenha      = $dados['novaSenha'];
+    //         $this->novaSenha      = $dados['novaSenha'];
             
-            $senhaNova = md5($dados['novaSenha']);
+    //         $senhaNova = md5($dados['novaSenha']);
 
-            $origem = "TalkingTA@hotmail.com";
-            $msg    ="Ola, \n";
-            //$header = "MIME-Version: 1.0";
-            $header = "Content-type: text/html; charset='iso-8859-1'";
-            $header = "From: $origem Replay-to: $emailEnviar";
-            $header = "Sua senha foi alterada com sucesso!";
+    //         $origem = "TalkingTA@hotmail.com";
+    //         $msg    ="Ola, \n";
+    //         //$header = "MIME-Version: 1.0";
+    //         $header = "Content-type: text/html; charset='iso-8859-1'";
+    //         $header = "From: $origem Replay-to: $emailEnviar";
+    //         $header = "Sua senha foi alterada com sucesso!";
         
-            if(mail($emailEnviar, $msg, $header)){
+    //         if(mail($emailEnviar, $msg, $header)){
 
-                $query  = "UPDATE administrador SET administrador_senha = '$senhaNova' WHERE email_administrador = '" . $_SESSION["email"] . "'";
-                $sql = $mysqli->query($query) or die($mysqli->error);
+    //             $query  = "UPDATE administrador SET administrador_senha = '$senhaNova' WHERE email_administrador = '" . $_SESSION["email"] . "'";
+    //             $sql = $mysqli->query($query) or die($mysqli->error);
                
-                if($sql->execute()){
-                    return 'ok';
-                }else{
-                    return 'erro';
-                }
-            }
+    //             if($sql->execute()){
+    //                 return 'ok';
+    //             }else{
+    //                 return 'erro';
+    //             }
+    //         }
 
 
-        }catch (PDOException $ex) {
-            return 'error '.$ex->getMessage();
-        }
+    //     }catch (PDOException $ex) {
+    //         return 'error '.$ex->getMessage();
+    //     }
         
-    }
+    // }
 
 
     

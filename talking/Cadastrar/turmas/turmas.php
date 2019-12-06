@@ -168,11 +168,21 @@
                   <!-- MODAL CORPO -->
                   <div class="modal-body">
                     <label class="label-input100">Série:</label>
-                    <input type="text" class="input100" name="serie" value="<?= $dados[$i]['turma_serie']  ?>">
-                    <label class="label-input100">Descrição:</label>
-                    <input type="text" class="input100" name="descricao" value="<?= $dados[$i]['turma_descricao']  ?>"> 
-                    <label class="label-input100">Período:</label>
-                    <input type="text" class="input100" name="periodo" value="<?= $dados[$i]['turma_periodo']  ?>"> 
+                    <input type="number" class="input100" name="serie" value="<?= $dados[$i]['turma_serie']  ?>">
+
+                    <span class="label-input100">Turma</span>
+                    <select name="descricao" class="input100">
+                      <option value="A">A</a>  
+                      <option value="B">B</a>
+                      <option value="C">C</a>
+                      <option value="D">D</a>
+                    </select>
+                  
+                    <span class="label-input100">Período:</span>
+                    <select name="periodo" class="input100">
+                      <option value="Manha">Manha</a>  
+                      <option value="Tarde">Tarde</a>
+                    </select>
 
 
 
@@ -241,16 +251,22 @@
                     
               <!-- SERIE TURMA-->
               <span class="label-input100">Série</span>
-              <input class="input100" type="text" name="serie" id="turmaSerie" placeholder="Digite a Série" required>
+              <input class="input100" type="number" name="serie" id="turmaSerie" placeholder="Digite a Série" required>
                     
               <!-- DESCRIÇÃO DA TURMA-->
               <span class="label-input100">Turma</span>
-              <input class="input100" type="text" name="descricao" id="turmaDescricao" placeholder="Digite a Turma (Exemplo A)" required>
+              <select name="descricao" class="input100" placeholder="Escolha uma Turma" required>
+                <option value="">---</option>
+                <option value="A">A</a>  
+                <option value="B">B</a>
+                <option value="C">C</a>
+                <option value="D">D</a>
+              </select>
                    
 
               <!-- PERIODO TURMA -->
               <span class="label-input100">Período</span>
-              <select name="turma_periodo" class="form-control" placeholder="Escolha um período" required>
+              <select name="turma_periodo" class="input100" placeholder="Escolha um período" required>
                 <option value="">---</option>
                 <option value="Manha">Manha</a>  
                 <option value="Tarde">Tarde</a>

@@ -25,7 +25,7 @@ $obj->setTabela("aluno");
 			// DANDO UM UNSET NAS VARIAVEIS CASO O USUARIO NÃO TENHA CONTA PARA LIMPAR AS INFORMAÇÕES DA MEMORIA DO SERVIDOR
 			
   			$_SESSION['msg'] = " <p aling='center' class='alert alert-danger'>Login ou senha incorreto!</p>";
-			header('location:../../Inicio/login/index.php');
+			header('location:../../index.php');
 
 
 		}

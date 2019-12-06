@@ -56,10 +56,12 @@ $obj->setTabela("pessoa");
 	if(isset($_POST['alterarPessoa'])){
 		$acao = null;
 		$dados = array();
-		$where = "turma_id=" . $_POST['turma_id'];	 
-		$dados["turma_serie"]  	   =  "'" . $_POST['serie'] . "'";
-		$dados["turma_descricao"]  =  "'" . $_POST['descricao'] . "'";
-		$dados["turma_periodo"]    =  "'" . $_POST['periodo'] . "'";
+		$where = "pessoa_id=" . $_POST['pessoa_id'];	 
+		$dados["pessoa_nome"]  	   =  "'" . $_POST['nomePessoa'] . "'";
+		$dados["pessoa_CPF"]  	   =  "'" . $_POST['cpfPessoa'] . "'";
+		$dados["pessoa_email"]     =  "'" . $_POST['emailPessoa'] . "'";
+		$dados["pessoa_celular"]   =  "'" . $_POST['celularPessoa'] . "'";
+		$dados["pessoa_status"]    =  "'" . $_POST['status'] . "'";
 		$obj->alterar($where,$dados);
 
 		echo '<script type="text/javascript">
@@ -72,7 +74,7 @@ $obj->setTabela("pessoa");
 	
 	// EXCLUIR PESSOA
 	if(isset($_POST['excluirPessoa'])){
-		$where = "turma_id=" . $_POST['turma_id'];
+		$where = "pessoa_id=" . $_POST['pessoa_id'];
 		$dados  = $obj->excluir($where); 
 
 		echo '<script type="text/javascript">

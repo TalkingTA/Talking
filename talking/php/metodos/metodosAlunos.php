@@ -7,7 +7,7 @@ $obj->setTabela("aluno");
 
 	
 	// CADASTRAR ALUNO
-	if($_POST['operacao'] == "cadAluno"){
+	if(isset($_POST['cadAluno'])){
 
 		if($obj->cadastrarAluno($_POST) == 'ok'){
 
@@ -29,7 +29,7 @@ $obj->setTabela("aluno");
 	}
 
 	// ALTERAR ALUNO
-	if(isset($_POST['alterar'])){
+	if(isset($_POST['alterarAluno'])){
 		$acao = null;
 		$dados = array();
 		$where = "aluno_id=" . $_POST['aluno_id'];	 
@@ -37,7 +37,7 @@ $obj->setTabela("aluno");
 		$dados["aluno_ra"]        	=  	"'" . $_POST['ra'] . "'";
 		$dados["aluno_idade"]       =  	"'" . $_POST['idade'] . "'";
 		$dados["aluno_sexo"]       	=  	"'" . $_POST['sexo'] . "'";
-		$dados["status"]       		=  	"'" . $_POST['status'] . "'";
+		$dados["aluno_status"]      =  	"'" . $_POST['status'] . "'";
 		$obj->alterar($where,$dados);
 
 		echo '<script type="text/javascript">

@@ -27,18 +27,13 @@
 
 	<!-- IMPORTANDO JQUERY PARA UTILIZAR AS MASCARA-->
 	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+	
 
-	<!-- CRIANDO AS MASCARA -->
-	<script type="text/javascript">
-		//SÓ VAI INSERIR QUANDO O FORMULARIO FOR CARREGADO
-		$(document).ready(function(){
-			$("#cpf").mask("000.000.000-00")
-			$("#celular").mask("(00) 00000-0000")
-		})
-		
 
-	</script>
+
+	
 </head>
 <body>
 	
@@ -56,7 +51,7 @@
 				<!-- CPF -->
 				<div class="wrap-input100 bg1 rs1-wrap-input100">
 					<span class="label-input100">CPF</span>
-					<input class="input100" type="text" name="cpfAdministrador" id="cpf" autocomplete="off" placeholder="Digite seu CPF" required>
+					<input class="input100" type="text"   name="cpfAdministrador" id="cpf" autocomplete="off" placeholder="Digite seu CPF" required>
 				</div>
 				
 				<!-- EMAIL -->
@@ -74,7 +69,7 @@
 				<!-- TIPO ADMINISTRADOR -->
 				<div class="wrap-input100 bg1 rs1-wrap-input100">
 					<span class="label-input100">Tipo de Administrador</span>
-					<select name="tipo_id" class="form-control" required>
+					<select name="tipo_id" class="input100" required>
 						<option value="">---</option>
 						<?php for($i=0;$i<count($dados);$i++){ ?>
 							<option value="<?php echo $dados[$i]['tipo_id']; ?>"><?php echo $dados[$i]['tipo_pessoa'];?></a>
@@ -127,6 +122,15 @@
 
 		</div>
 	</div>
+
+
+    <!-- CRIANDO AS MASCARA -->
+	<script type="text/javascript">
+		//SÓ VAI INSERIR QUANDO O FORMULARIO FOR CARREGADO
+		$("#cpf").mask("000.000.000-00")
+		$("#celular").mask("(00) 00000-0000")
+		
+	</script>
 
 	
 	

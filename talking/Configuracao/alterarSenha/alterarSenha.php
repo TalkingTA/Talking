@@ -1,4 +1,15 @@
-<?php session_start() ?>
+<?php
+  session_start();
+  if(!isset($_SESSION['email']) and !isset($_SESSION['senha'])){
+    header("location: ../../Inicio/sair/sair.php");
+  }  
+  else {
+    require_once '../../php/classes/Funcoes.class.php';
+    $obj = new Funcoes();
+    $obj->setTabela("administrador");
+    $dados = $obj->consultar();
+  }
+?>
 <!DOCTYPE html>
 <html lang="PT-BR">
 <head>
@@ -31,6 +42,15 @@
 						<span class="contact100-form-title">
 							Alterar Senha
 						</span>
+
+						<!-- INPUT EMAIL -->
+						<div class="wrap-input100 validate-input"">
+							<input class="input100" type="text" name="email" id="email" autocomplete="off" placeholder="E-mail" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+								<i class="fa fa-envelope" aria-hidden="true"></i>
+							</span>
+						</div>
 				
 						<div class="wrap-input100 validate-input">
 							<input class="input100" type="password" name="novaSenha" id="senha" autocomplete="off" placeholder="Nova senha" required>
